@@ -1,0 +1,91 @@
+#!/bin/bash
+
+# tput can get cols
+# printf can pad strings
+
+APP=$( basename $0 )
+C1=$( tput setaf 1 ) # red
+C2=$( tput setaf 2 ) # green
+C4=$( tput setaf 4 ) # blue
+R=$( tput sgr0 )
+
+FILES=(
+    "vimrc|$HOME/.vimrc"
+    "xmonad.hs|$HOME/.xmonad/xmonad.hs"
+)
+
+# $1 is target.
+# $2 is name.
+function create_link()
+{
+    echo -n "Linking $C2$2$R -> $C4$1$R "
+
+    if [ -e $2 ];
+    then
+        echo "$C1[FAIL] File exists.$R"
+        return
+    fi
+
+    # redirect stdout and stderr
+    /bin/ln -s $PWD/$1 $2
+
+    if (( $? )) ;
+    then
+        echo "$C1[FAIL] Error creating link.$R"
+    else
+        echo "$C2[DONE]$R"
+    fi
+}
+
+# $1 link to remove
+function remove_link()
+{
+    echo -n "Unlinking $C2$2$R -> $C4$1$R "
+
+    if [ ! -h $2 ];
+    then
+        echo "$C1[FAIL] Not a link.$R"
+        return
+    fi
+
+    rm $2
+
+    if (( $? )) ;
+    then
+        echo "$C1[FAIL] Error removing link.$R"
+    else
+        echo "$C2[DONE]$R"
+    fi
+}
+
+# $1 command
+function apply_command()
+{
+    for FILE in ${FILES[@]}
+    do
+        if [[ $FILE =~ ([^|]+)\|([^|]+) ]];
+        then
+            $1 ${BASH_REMATCH[1]} ${BASH_REMATCH[2]}
+        fi
+    done
+}
+
+# main
+if [ "$1" == "link" ];
+then
+    apply_command create_link
+elif [ "$1" == "unlink" ];
+then
+    apply_command remove_link
+elif [ "$1" == "update" ];
+then
+    echo "Updating, call git, etc."
+else
+    echo "$APP - Config Manager v0.1"
+    echo "usage: $APP link"
+    echo "       $APP unlink"
+    echo "       $APP update"
+fi
+
+
+
