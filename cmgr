@@ -4,14 +4,19 @@
 # printf can pad strings
 
 APP=$( basename $0 )
+COLS=$( tput cols )
 C1=$( tput setaf 1 ) # red
 C2=$( tput setaf 2 ) # green
 C4=$( tput setaf 4 ) # blue
 R=$( tput sgr0 )
 
 FILES=(
+    "bashrc|$HOME/.bashrc"
+    "bash_profile|$HOME/.bash_profile"
     "vimrc|$HOME/.vimrc"
     "xmonad.hs|$HOME/.xmonad/xmonad.hs"
+    "Xdefaults|$HOME/.Xdefaults"
+    "xinitrc|$HOME/.xinitrc"
 )
 
 # $1 is target.
@@ -19,6 +24,7 @@ FILES=(
 function create_link()
 {
     echo -n "Linking $C2$2$R -> $C4$1$R "
+    #printf "%-80s" "Linking $C2$2$R -> $C4$1$R "
 
     if [ -e $2 ];
     then
