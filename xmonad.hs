@@ -54,7 +54,7 @@ font0 = "-windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1"
 statusBarCmd :: String
 statusBarCmd =  printf
     "%s -bg '%s' -fg '%s' -w %d -sa c -fn '%s' -e '' -x 0 -ta l"
-    "/usr/local/bin/dzen2"
+    "dzen2"
     "black"
     "grey30"
     (1380::Integer)
