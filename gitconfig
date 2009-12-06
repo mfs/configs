@@ -1,0 +1,11 @@
+# [cmgr] .gitconfig
+
+[user]
+	name = Mike Sampson
+	email = mike@sambodata.com
+[color]
+	pager = true
+	ui = auto
+[core]
+	editor = vim
+	pager = less -FRSX
