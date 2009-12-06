@@ -1,4 +1,4 @@
-# bashrc
+# [cmgr] .bashrc
 
 # need to prevent .git being searched on removable media
 

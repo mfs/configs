@@ -1,3 +1,5 @@
+" [cmgr] .vimrc
+
 syntax on
 
 set number

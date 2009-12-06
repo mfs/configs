@@ -1,5 +1,6 @@
 -- xmonad.hs
 -- Mike Sampson
+-- [cmgr] .xmonad/xmonad.hs
 
 -- General
 import Data.List

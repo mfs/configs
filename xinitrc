@@ -1,3 +1,4 @@
+# [cmgr] .xinitrc
 
 # Load X resources
 xrdb -merge .Xdefaults
