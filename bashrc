@@ -44,6 +44,7 @@ export GOARCH="amd64"
 export GOOS="linux"
 export GOBIN="/home/mike/bin"
 
+export EDITOR=vim
 export HISTCONTROL=ignoredups
 export SCONSFLAGS="-Q -j 3"
 

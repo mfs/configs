@@ -133,6 +133,8 @@ myKeys = M.fromList $
             scratchpadSpawnActionTerminal "urxvt")
     , ((mod4Mask                , xK_s      ),
             submap $ searchEngineMap $ promptSearch mySPConfig)
+    , ((mod4Mask                , xK_c      ),
+            submap $ cheatSheetMap)
     --, ((mod4Mask                , xK_s      ), )
     , ((0                       , 0x1008FF11), spawn cmdVolumeDown)
     , ((0                       , 0x1008FF12), spawn cmdVolumeMute)
@@ -154,6 +156,12 @@ myKeys = M.fromList $
             , ((0, xK_i), method  imdb)
             , ((0, xK_w), method  wikipedia)
             , ((0, xK_y), method  youtube)
+            ]
+
+        cheatSheetDir = "~/data/reference/cheatsheets/"
+
+        cheatSheetMap = M.fromList $
+            [ ((0, xK_r), spawn $ "feh " ++ cheatSheetDir ++ "re.png")
             ]
 
 -- my mouse buttons
