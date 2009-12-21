@@ -39,6 +39,16 @@ function set_prompt {
 
 [ -z "$PS1" ] && return
 
+function bm {
+    if [ -e .bookmarks ]
+    then
+        for URL in $(cat .bookmarks )
+        do
+            firefox $URL
+        done
+    fi
+}
+
 export GOROOT="/home/mike/code/go"
 export GOARCH="amd64"
 export GOOS="linux"
