@@ -49,6 +49,35 @@ function bm {
     fi
 }
 
+function aur {
+    if (( $# != 1 ))
+    then
+        echo "usage: aur <package>"
+        return
+    fi
+
+    local PKGDIR=$HOME/pkgs
+    local FILENAME=$1.tar.gz
+
+    cd $PKGDIR && rm -f $FILENAME
+
+    echo -n "Downloading $FILENAME ... "
+
+    wget -q http://aur.archlinux.org/packages/$1/$FILENAME
+
+    if (( $? ))
+    then
+        echo "[FAIL]"
+        return
+    fi
+
+    echo "[DONE]"
+
+    tar xzf $FILENAME
+    cd $1
+    ls -lh
+}
+
 export GOROOT="/home/mike/code/go"
 export GOARCH="amd64"
 export GOOS="linux"
