@@ -78,6 +78,31 @@ function aur {
     ls -lh
 }
 
+function tputcolors {
+    local txtund=$(tput sgr 0 1)          # Underline
+    local txtbld=$(tput bold)             # Bold
+    local bldred=${txtbld}$(tput setaf 1) #  red
+    local bldblu=${txtbld}$(tput setaf 4) #  blue
+    local bldwht=${txtbld}$(tput setaf 7) #  white
+    local txtrst=$(tput sgr0)             # Reset
+    local info=${bldwht}*${txtrst}        # Feedback
+    local pass=${bldblu}*${txtrst}
+    local warn=${bldred}!${txtrst}
+
+    echo
+    echo -e "$(tput bold) reg  bld  und   tput-command$(tput sgr0)"
+
+    for i in $(seq 1 7); do
+        echo " $(tput setaf $i)Text$(tput sgr0) $(tput bold)$(tput setaf $i)Text$(tput sgr0) $(tput sgr 0 1)$(tput setaf $i)Text$(tput sgr0)  \$(tput setaf $i)"
+    done
+
+    echo ' Bold            $(tput bold)'
+    echo ' Underline       $(tput sgr 0 1)'
+    echo ' Reset           $(tput sgr0)'
+    echo
+
+}
+
 export GOROOT="/home/mike/code/go"
 export GOARCH="amd64"
 export GOOS="linux"
