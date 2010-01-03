@@ -131,16 +131,16 @@ if [ "$TERM" != "dumb" ]; then
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias diff='colordiff'
-    alias pacs="pacsearch"
-    alias ss="sudo shutdown -h now"
-    alias pizza="echo 'PIZZA READY IN:'; utimer -c 15m"
-    alias ssh="TERM=xterm ssh"
+    alias pacs='pacsearch'
+    alias ss='sudo shutdown -h now'
+    alias pizza='echo "PIZZA READY IN:"; utimer -c 15m'
+    alias ssh='TERM=xterm ssh'
     alias pud='pwd | xsel -s'
     alias pod='cd "$( xsel -so )"'
 fi
 
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
+#if [ -f /etc/bash_completion ]; then
+#    . /etc/bash_completion
+#fi
 
 
