@@ -104,6 +104,7 @@ myManageHook = composeAll . concat $
     , [ className =? "Epdfview" --> doShift "3:doc"]
     , [ className =? "Apvlv" --> doShift "3:doc"]
     , [ className =? "OpenOffice.org 3.1" --> doShift "3:doc"]
+    , [ isFullscreen --> doFullFloat]
     ]
     where
         myFloatClasses = [ "MPlayer", "feh", "Xmessage", "Grip", "DClock"
