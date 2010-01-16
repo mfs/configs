@@ -1,0 +1,4 @@
+# [cmgr] .screenrc
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.k} %{m}%H%=%{g}%w%=%{c}%d-%m-%Y %c "
