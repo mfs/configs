@@ -39,6 +39,17 @@ function set_prompt {
 
 [ -z "$PS1" ] && return
 
+function color {
+    if [[ $1 =~ ([[:xdigit:]]{2})([[:xdigit:]]{2})([[:xdigit:]]{2}) ]]
+    then
+        printf "(%d, %d, %d)\n" \
+               0x${BASH_REMATCH[1]} 0x${BASH_REMATCH[2]} 0x${BASH_REMATCH[3]}
+    elif [[ $1 =~ ([[:digit:]]{1,3}),([[:digit:]]{1,3}),([[:digit:]]{1,3}) ]]
+    then
+        printf "#%02x%02x%02x\n" ${BASH_REMATCH[1]} ${BASH_REMATCH[2]} ${BASH_REMATCH[3]}
+    fi
+}
+
 function bm {
     if [ -e .bookmarks ]
     then
