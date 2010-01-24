@@ -39,6 +39,17 @@ function set_prompt {
 
 [ -z "$PS1" ] && return
 
+function uml {
+    [ -e README ] || return
+    [[ $( head -n 1 README ) =~ Linux\ kernel\ release\ 2.6.xx ]] || return
+    make mrproper
+    make mrproper ARCH=um
+    make defconfig ARCH=um
+    make -j 3 ARCH=um
+    cp linux $HOME/bin/linux-$( ./linux --version )
+    make modules_install INSTALL_MOD_PATH=$HOME/bin/uml_modules ARCH=um
+}
+
 function color {
     if [[ $1 =~ ([[:xdigit:]]{2})([[:xdigit:]]{2})([[:xdigit:]]{2}) ]]
     then
@@ -46,7 +57,8 @@ function color {
                0x${BASH_REMATCH[1]} 0x${BASH_REMATCH[2]} 0x${BASH_REMATCH[3]}
     elif [[ $1 =~ ([[:digit:]]{1,3}),([[:digit:]]{1,3}),([[:digit:]]{1,3}) ]]
     then
-        printf "#%02x%02x%02x\n" ${BASH_REMATCH[1]} ${BASH_REMATCH[2]} ${BASH_REMATCH[3]}
+        printf "#%02x%02x%02x\n" \
+               ${BASH_REMATCH[1]} ${BASH_REMATCH[2]} ${BASH_REMATCH[3]}
     fi
 }
 
