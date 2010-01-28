@@ -39,6 +39,12 @@ function set_prompt {
 
 [ -z "$PS1" ] && return
 
+goto() { [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
+
+cpf() { cp "$@" && goto "$_"; }
+
+mvf() { mv "$@" && goto "$_"; }
+
 function uml {
     [ -e README ] || return
     [[ $( head -n 1 README ) =~ Linux\ kernel\ release\ 2.6.xx ]] || return
