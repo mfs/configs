@@ -99,7 +99,7 @@ myManageHook = composeAll . concat $
     , [ fmap ( "Page Info" `isInfixOf`) title --> doCenterFloat]
     , [ className =? "URxvt" -->
             (ask >>= \w -> liftX (setOpacity w 0x99999998) >> idHook)]
-    , [ className =? "Shiretoko" --> doShift "2:web"]
+    , [ className =? c --> doShift "2:web" | c <- ["Namoroka", "Chromium"]]
     , [ className =? "XDvi" --> doShift "3:doc"]
     , [ className =? "Epdfview" --> doShift "3:doc"]
     , [ className =? "Apvlv" --> doShift "3:doc"]
@@ -113,8 +113,8 @@ myManageHook = composeAll . concat $
                          , "Vdesk.py", "org-scilab-modules-jvm-Scilab"
                          ]
 
-        myFloatTitles = ["Downloads", "Add-ons", "Shiretoko Preferences"
-                        , "About Shiretoko", "Event Tester", "OpenGL"
+        myFloatTitles = ["Downloads", "Add-ons", "Namoroka Preferences"
+                        , "About Namoroka", "Event Tester", "OpenGL"
                         , "Element Properties"]
 
 
