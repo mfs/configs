@@ -158,6 +158,7 @@ if [ "$TERM" != "dumb" ]; then
     alias pacman='pacman-color'
     alias spacman='sudo pacman-color'
     alias ls='ls --color=auto'
+    alias ll='ls -lh --color=auto'
     alias grep='grep --color=auto'
     alias diff='colordiff'
     alias pacs='pacsearch'
