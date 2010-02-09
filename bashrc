@@ -40,7 +40,7 @@ function set_prompt {
 [ -z "$PS1" ] && return
 
 pacman() {
-    if [[ "$1" =~ ^-S[^\s]*[cuy]|^-R|^-U ]]
+    if [[ "$1" =~ ^-S[cuy]|^-S|^-R|^-U ]]
     then
         sudo pacman-color $@
     else
