@@ -39,6 +39,15 @@ function set_prompt {
 
 [ -z "$PS1" ] && return
 
+pacman() {
+    if [[ "$1" =~ ^-S[^\s]*[cuy]|^-R|^-U ]]
+    then
+        sudo pacman-color $@
+    else
+        pacman-color $@
+    fi
+}
+
 goto() { [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
 
 cpf() { cp "$@" && goto "$_"; }
@@ -155,8 +164,6 @@ esac
 
 if [ "$TERM" != "dumb" ]; then
     eval "`dircolors -b ~/.dircolors`"
-    alias pacman='pacman-color'
-    alias spacman='sudo pacman-color'
     alias ls='ls --color=auto'
     alias ll='ls -lh --color=auto'
     alias grep='grep --color=auto'
@@ -167,6 +174,8 @@ if [ "$TERM" != "dumb" ]; then
     alias ssh='TERM=xterm ssh'
     alias pud='pwd | xsel -s'
     alias pod='cd "$( xsel -so )"'
+    alias quakelive='LD_PRELOAD=/usr/lib/libpng12.so
+                     /usr/bin/firefox http://www.quakelive.com'
 fi
 
 #if [ -f /etc/bash_completion ]; then
