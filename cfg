@@ -1,0 +1,70 @@
+#!/usr/bin/python
+
+# [cmgr] bin/cfg
+
+# Interfaces
+# BASH:    $( cfg get term )
+# PERL:    `cfg get term` or system("cfg", "get", "term")
+# Haskell: import System.Process
+#          readProcess "cfg" ["get", "term"] []
+# Python:  from subprocess import Popen, PIPE
+#          Popen(["cfg", "get", "term"], stdout=PIPE).communicate()[0]
+#          or just use import json ... :)
+
+import json
+import os.path
+import sys
+
+SETTINGS_FILE = os.path.expanduser('~/configs/settings.json')
+
+def dump(s):
+    print json.dumps(s, sort_keys = True, indent=2)
+
+def get(s, key):
+    if s.has_key(key):
+        print s[key]
+
+def set(s, key, val):
+    s[key] = val
+    save(s)
+
+def delete(s, key):
+    if s.has_key(key):
+        del s[key]
+        save(s)
+
+def save(s):
+    json.dump(s, open(SETTINGS_FILE, 'w'))
+
+def usage():
+    str = [
+        "usage: %s dump (default)",
+        "       %s get <key>",
+        "       %s set <key> <val>",
+        "       %s delete <key>"
+    ]
+
+    for x in str:
+        print x % sys.argv[0]
+
+def main():
+    try:
+        settings = json.load(open(SETTINGS_FILE))
+    except:
+        settings = {}
+
+    a = sys.argv
+    n = len(a)
+    if n == 1 or (n == 2 and a[1] == 'dump'):
+        dump(settings)
+    elif n == 3 and a[1] == 'get':
+        get(settings, a[2])
+    elif n == 3 and a[1] == 'delete':
+        delete(settings, a[2])
+    elif n == 4 and a[1] == 'set':
+        set(settings, a[2], a[3])
+    else:
+        usage()
+
+if __name__ == "__main__":
+    main()
