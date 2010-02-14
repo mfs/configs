@@ -142,9 +142,9 @@ myKeys = M.fromList $
     , ((0                       , 0x1008FF13), spawn cmdVolumeUp)
     ]
     where
-        cmdBrowser    = "firefox"
-        cmdPizza1     = "firefox http://www.eagleboys.com.au"
-        cmdPizza2     = "firefox http://www.dominos.com.au"
+        cmdBrowser    = "chromium"
+        cmdPizza1     = "chromium http://www.eagleboys.com.au"
+        cmdPizza2     = "chromium http://www.dominos.com.au"
         cmdVolumeDown = "amixer -q set 'Analog Front' '1%-'"
         cmdVolumeMute = "amixer -q set 'Analog Front' 'toggle'"
         cmdVolumeUp   = "amixer -q set 'Analog Front' '1%+'"

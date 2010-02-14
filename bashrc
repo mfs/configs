@@ -39,8 +39,18 @@ function set_prompt {
 
 [ -z "$PS1" ] && return
 
+man() {
+    local RFC=/usr/share/doc/rfc/txt/$1.txt
+    if [ -r $RFC ]
+    then
+        cat $RFC | sed 's/\f//' | less
+    else
+        /usr/bin/man $@
+    fi
+}
+
 pacman() {
-    if [[ "$1" =~ ^-S[cuy]|^-S|^-R|^-U ]]
+    if [[ "$1" =~ ^-S[cuy]|^-S$|^-R|^-U ]]
     then
         sudo pacman-color $@
     else
@@ -82,7 +92,7 @@ function bm {
     then
         for URL in $(cat .bookmarks )
         do
-            firefox $URL
+            chromium $URL
         done
     fi
 }
