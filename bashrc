@@ -2,7 +2,7 @@
 
 # need to prevent .git being searched on removable media
 
-export PATH=$PATH:/home/mike/bin
+export PATH=$PATH:$HOME/bin
 
 function set_prompt {
     local BLA='\[\033[0;30m\]' # BLACK
@@ -151,10 +151,10 @@ function tputcolors {
 
 }
 
-export GOROOT="/home/mike/code/go"
+export GOROOT="$HOME/code/go"
 export GOARCH="amd64"
 export GOOS="linux"
-export GOBIN="/home/mike/bin"
+export GOBIN="$HOME/bin"
 
 export EDITOR=vim
 export HISTCONTROL=ignoredups
