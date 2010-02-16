@@ -98,7 +98,9 @@ EXEC 01;32
 .cpp 00;36
 .h 00;36
 .hh 00;36
+.java 00;36
 .o 00;35
+.class 00;35
 *SConstruct 00;31
 *Makefile 00;31
 *makefile 00;31

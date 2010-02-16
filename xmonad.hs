@@ -95,6 +95,7 @@ startup = do
 
 myManageHook = composeAll . concat $
     [ [ className =? c --> doCenterFloat | c <- myFloatClasses]
+    , [ className =? "sun-applet-Main" --> doFloat]
     , [ title     =? t --> doCenterFloat | t <- myFloatTitles]
     , [ fmap ( "Page Info" `isInfixOf`) title --> doCenterFloat]
     , [ className =? "URxvt" -->
