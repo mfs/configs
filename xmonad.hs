@@ -43,6 +43,10 @@ import XMonad.Util.Run
 import XMonad.Util.WorkspaceCompare ( getSortByIndex, getSortByXineramaRule )
 import XMonad.Util.Scratchpad
 
+cfg :: String -> IO String
+cfg str = do
+    x <- runProcessWithInput "/home/mike/bin/cfg" ["get", str] []
+    return(x)
 
 color0 :: String
 color0 = "#0390e1" -- blue
@@ -68,19 +72,21 @@ myWorkspaces = map (\(x, y) -> show x ++ ":" ++ y)
 main = do
     din <- spawnPipe statusBarCmd
     sc <- countScreens
+    term <- cfg "term"
+    browser <- cfg "browser"
     xmonad $ defaultConfig
         { borderWidth        = 1
         , normalBorderColor  = "grey30"
         , focusedBorderColor = "#01304b"
         , workspaces         = myWorkspaces
-        , terminal           = "urxvt"
+        , terminal           = term
         , modMask            = mod4Mask
         , manageHook         = myManageHook <+> scratchpadManageHookDefault
         , startupHook        = startup
         , logHook            = dynamicLogWithPP $ myPP din sc
         , layoutHook         = avoidStruts ( layoutHints
               (smartBorders tiled ||| Mirror tiled ||| noBorders Full ||| Grid))
-        , keys               = \c -> myKeys `M.union` keys defaultConfig c
+        , keys               = \c -> myKeys browser `M.union` keys defaultConfig c
         , mouseBindings      = myMouseBindings
         }
         where
@@ -118,16 +124,15 @@ myManageHook = composeAll . concat $
                         , "About Namoroka", "Event Tester", "OpenGL"
                         , "Element Properties"]
 
-
 -- redifine some keys
-myKeys = M.fromList $
+myKeys browser = M.fromList $
     [ ((mod4Mask                , xK_p      ), shellPrompt mySPConfig)
     , ((mod4Mask                , xK_Return ), dwmpromote)
     , ((mod4Mask                , xK_b      ), sendMessage ToggleStruts)
     , ((mod4Mask                , xK_g      ), goToSelected defaultGSConfig)
     , ((mod4Mask                , xK_r      ),
             spawnSelected defaultGSConfig ["gimp", "epdfview", "soffice"])
-    , ((mod4Mask .|. controlMask, xK_f      ), spawn cmdBrowser)
+    , ((mod4Mask .|. controlMask, xK_f      ), spawn browser)
     , ((mod4Mask .|. controlMask, xK_e      ), spawn cmdPizza1)
     , ((mod4Mask .|. controlMask, xK_d      ), spawn cmdPizza2)
     , ((mod4Mask .|. controlMask, xK_n      ), spawn "nitrogen ~/images")
@@ -143,9 +148,8 @@ myKeys = M.fromList $
     , ((0                       , 0x1008FF13), spawn cmdVolumeUp)
     ]
     where
-        cmdBrowser    = "chromium"
-        cmdPizza1     = "chromium http://www.eagleboys.com.au"
-        cmdPizza2     = "chromium http://www.dominos.com.au"
+        cmdPizza1     = browser ++ " http://www.eagleboys.com.au"
+        cmdPizza2     = browser ++ " http://www.dominos.com.au"
         cmdVolumeDown = "amixer -q set 'Analog Front' '1%-'"
         cmdVolumeMute = "amixer -q set 'Analog Front' 'toggle'"
         cmdVolumeUp   = "amixer -q set 'Analog Front' '1%+'"

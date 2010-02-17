@@ -22,7 +22,7 @@ def dump(s):
 
 def get(s, key):
     if s.has_key(key):
-        print s[key]
+        sys.stdout.write(s[key])
 
 def set(s, key, val):
     s[key] = val
