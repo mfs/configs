@@ -15,6 +15,9 @@ set tabpagemax=20
 highlight CursorLine cterm=none ctermbg=80
 highlight LineNr ctermfg=7 ctermbg=80
 
+map <S-Left> :bp<CR>
+map <S-Right> :bn<CR>
+
 map <F10> <Esc>:setlocal spell spelllang=en_au<CR>
 map <F11> <Esc>:setlocal nospell<CR>
 
