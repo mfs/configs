@@ -10,6 +10,7 @@ import Data.Ratio
 import Graphics.X11
 import Text.Printf
 import System.IO
+import Control.Monad(liftM, liftM2)
 -- XMonad Core
 import XMonad hiding ( (|||) )
 import XMonad.Operations
@@ -17,6 +18,7 @@ import qualified XMonad.StackSet as W
 -- XMonad.Actions
 import XMonad.Actions.DwmPromote
 import XMonad.Actions.GridSelect
+import XMonad.Actions.OnScreen
 import XMonad.Actions.Search
 import XMonad.Actions.Submap
 -- XMonad.Hooks
@@ -107,9 +109,9 @@ myManageHook = composeAll . concat $
     , [ className =? "URxvt" -->
             (ask >>= \w -> liftX (setOpacity w 0x99999998) >> idHook)]
     , [ className =? c --> doShift "2:web" | c <- ["Namoroka", "Chromium"]]
-    , [ className =? "XDvi" --> doShift "3:doc"]
-    , [ className =? "Epdfview" --> doShift "3:doc"]
-    , [ className =? "Apvlv" --> doShift "3:doc"]
+    , [ className =? "XDvi" --> doShift2 "3:doc"]
+    , [ className =? "Epdfview" --> doShift2 "3:doc"]
+    , [ className =? "Apvlv" --> doShift2 "3:doc"]
     , [ className =? "OpenOffice.org 3.1" --> doShift "3:doc"]
     , [ isFullscreen --> doFullFloat]
     ]
@@ -123,6 +125,9 @@ myManageHook = composeAll . concat $
         myFloatTitles = ["Downloads", "Add-ons", "Namoroka Preferences"
                         , "About Namoroka", "Event Tester", "OpenGL"
                         , "Element Properties"]
+
+        doShift1 = doF . liftM2 (.) (viewOnScreen 0) W.shift
+        doShift2 = doF . liftM2 (.) (viewOnScreen 1) W.shift
 
 -- redifine some keys
 myKeys browser = M.fromList $
