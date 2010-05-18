@@ -64,6 +64,15 @@ cpf() { cp "$@" && goto "$_"; }
 
 mvf() { mv "$@" && goto "$_"; }
 
+function cd {
+    builtin cd $@
+    if [ $( pwd ) = $HOME ]
+    then
+        local COUNT=$( ls -p | grep -v '/' | wc -l )
+        echo "$(tput setaf 1)### $COUNT FILES IN ~ ###$(tput sgr0)"
+    fi
+}
+
 function uml {
     [ -e README ] || return
     [[ $( head -n 1 README ) =~ Linux\ kernel\ release\ 2.6.xx ]] || return
