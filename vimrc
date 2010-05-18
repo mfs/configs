@@ -28,6 +28,7 @@ ab sv: std::vector
 ab sm: std::map
 ab se: std::endl;
 
+autocmd BufNewFile,BufRead  *.rst set tw=80
 autocmd BufNewFile,BufRead  *.txt set tw=80
 autocmd BufNewFile,BufRead  *.tex set tw=80
 autocmd BufNewFile,BufRead  *.cc set tw=80
