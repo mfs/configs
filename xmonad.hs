@@ -106,6 +106,7 @@ myManageHook = composeAll . concat $
     , [ className =? "sun-applet-Main" --> doFloat]
     , [ title     =? t --> doCenterFloat | t <- myFloatTitles]
     , [ fmap ( "Page Info" `isInfixOf`) title --> doCenterFloat]
+    , [ fmap ( "JAVA:" `isInfixOf`) title --> doCenterFloat]
     , [ className =? "URxvt" -->
             (ask >>= \w -> liftX (setOpacity w 0x99999998) >> idHook)]
     , [ className =? c --> doShift "2:web" | c <- ["Namoroka", "Chromium"]]
