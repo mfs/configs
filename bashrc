@@ -69,7 +69,10 @@ function cd {
     if [ $( pwd ) = $HOME ]
     then
         local COUNT=$( ls -p | grep -v '/' | wc -l )
-        echo "$(tput setaf 1)### $COUNT FILES IN ~ ###$(tput sgr0)"
+        if [ $COUNT -gt 0 ]
+        then
+            echo "$(tput setaf 1)### $COUNT FILES IN ~ ###$(tput sgr0)"
+        fi
     fi
 }
 
