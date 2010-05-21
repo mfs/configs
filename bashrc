@@ -65,8 +65,8 @@ cpf() { cp "$@" && goto "$_"; }
 mvf() { mv "$@" && goto "$_"; }
 
 function cd {
-    builtin cd $@
-    if [ $( pwd ) = $HOME ]
+    builtin cd "$@"
+    if [ "$( pwd )" = $HOME ]
     then
         local COUNT=$( ls -p | grep -v '/' | wc -l )
         if [ $COUNT -gt 0 ]
