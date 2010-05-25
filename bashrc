@@ -66,6 +66,7 @@ mvf() { mv "$@" && goto "$_"; }
 
 function cd {
     builtin cd "$@"
+    [ -n "$DISPLAY" ] && pwd | xsel -s
     if [ "$( pwd )" = $HOME ]
     then
         local COUNT=$( ls -p | grep -v '/' | wc -l )
@@ -195,8 +196,8 @@ if [ "$TERM" != "dumb" ]; then
     alias ss='sudo shutdown -h now'
     alias pizza='echo "PIZZA READY IN:"; utimer -c 15m'
     alias ssh='TERM=xterm ssh'
-    alias pud='pwd | xsel -s'
-    alias pod='cd "$( xsel -so )"'
+    alias dp='pwd | xsel -s'
+    alias pd='cd "$( xsel -so )"'
     alias quakelive='LD_PRELOAD=/usr/lib/libpng12.so
                      /usr/bin/firefox http://www.quakelive.com'
 fi
