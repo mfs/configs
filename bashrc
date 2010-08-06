@@ -24,17 +24,16 @@ function set_prompt {
     local NOR='\[\033[0m\]'    # NORMAL
 
     if [ -r /etc/chroot ]; then
-        chroot_name=$(cat /etc/chroot)
+        chroot_name="($(cat /etc/chroot))"
+    elif [ -r /etc/debian_chroot ]; then
+        chroot_name="($(cat /etc/debian_chroot))"
     fi
 
-    case $UID in
-    0)
-        PS1="${LRE}[${LGR}\H${LRE}|${CYA}\w${LRE}] \\$ ${NOR}"
-        ;;
-    *)
-        PS1="${RED}$chroot_name${WHI}[${LGR}\u${WHI}@${LGR}\H${WHI}|${CYA}\w\$(__git_ps1 '${WHI}|${LCY}%s')${WHI}] \\$ ${NOR}"
-        ;;
-    esac
+    if [[ $( type -t __git_ps1 ) == "function" ]]; then
+        git_p="\$(__git_ps1 '${WHI}|${LCY}%s')"
+    fi
+
+    PS1="${RED}$chroot_name${WHI}[${LGR}\u${WHI}@${LGR}\H${WHI}|${CYA}\w${git_p}${WHI}] \\$ ${NOR}"
 }
 
 [ -z "$PS1" ] && return
@@ -186,7 +185,7 @@ xterm*|rxvt*)
 esac
 
 if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b ~/.dircolors`"
+    [[ -r ~/.dircolors ]] && eval "`dircolors -b ~/.dircolors`"
     alias jj='javac *.java'
     alias ls='ls --color=auto'
     alias ll='ls -lh --color=auto'
