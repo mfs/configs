@@ -38,6 +38,24 @@ function set_prompt {
 
 [ -z "$PS1" ] && return
 
+asm() {
+
+    local ASM_DIR=$( mktemp -d )
+
+    local ASM_SRC=$ASM_DIR/temp.asm
+    local ASM_LST=$ASM_DIR/temp.lst
+    local ASM_OUT=$ASM_DIR/temp.out
+
+    echo "$1" | sed -e 's/[[:space:]]\{2,\}/\n/g' > $ASM_SRC
+
+    nasm $ASM_SRC -o $ASM_OUT -l $ASM_LST
+
+    [[ $? == 0 ]] && sed -e 's/[[:space:]]*[0-9]*[[:space:]]*//' $ASM_LST
+
+    rm -f $ASM_SRC $ASM_LST $ASM_OUT
+    rmdir $ASM_DIR
+}
+
 man() {
     local RFC=/usr/share/doc/rfc/txt/$1.txt
     if [ -r $RFC ]
