@@ -4,6 +4,27 @@
 
 export PATH=$PATH:$HOME/bin
 
+function exit_status {
+    local RED='\033[0;31m' # RED
+    local GRE='\033[0;32m' # GREEN
+
+    local es=$1
+
+    if [[ $es == 0 ]];
+    then
+        printf "${GRE}($es)"
+    else
+        printf "${RED}($es)"
+    fi
+}
+
+function hg_ps1 {
+    local hgb=$( hg branch 2> /dev/null )
+    if [[ $hgb != "" ]]; then
+        printf $1 $hgb
+    fi
+}
+
 function set_prompt {
     local BLA='\[\033[0;30m\]' # BLACK
     local DGR='\[\033[1;30m\]' # DGRAY
@@ -23,6 +44,9 @@ function set_prompt {
     local WHI='\[\033[1;37m\]' # WHITE
     local NOR='\[\033[0m\]'    # NORMAL
 
+    local tty=$( tty )
+    tty=${tty:5}
+
     if [ -r /etc/chroot ]; then
         chroot_name="($(cat /etc/chroot))"
     elif [ -r /etc/debian_chroot ]; then
@@ -30,10 +54,19 @@ function set_prompt {
     fi
 
     if [[ $( type -t __git_ps1 ) == "function" ]]; then
-        git_p="\$(__git_ps1 '${WHI}|${LCY}%s')"
+        git_p="\$(__git_ps1 '${LCY}git:%s')"
     fi
 
-    PS1="${RED}$chroot_name${WHI}[${LGR}\u${WHI}@${LGR}\H${WHI}|${CYA}\w${git_p}${WHI}] \\$ ${NOR}"
+    if [[ $( type -t hg ) == "file" ]]; then
+        hg_p="\$(hg_ps1 '${LCY}hg:%s')"
+    fi
+
+    # need to fix \[ \] around color code for exit status
+    PS1="${RED}$chroot_name${LGR}\u${WHI}@${LGR}\h \$(exit_status \$?) "
+    PS1="${PS1}${PUR}${tty} ${CYA}\w ${git_p}${hg_p}\n"
+    PS1="${PS1}${CYA}>>> ${NOR}"
+
+    PS2="${CYA}... ${NOR}"
 }
 
 [ -z "$PS1" ] && return
