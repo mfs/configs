@@ -22,12 +22,14 @@ SshAskpass*Button.borderWidth: 2
 
 ! urxvt
 !URxvt*termName: rxvt
-URxvt*scrollBar: true
+URxvt*scrollBar: false
 URxvt*scrollstyle: plain
 URxvt*scrollBar_right: true
 URxvt*scrollColor: #01304b
 URxvt*font: -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
 URxvt*boldFont: -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
+URxvt*italicFont: -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
+URxvt*boldItalicFont: -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
 
 URxvt*background: black
 URxvt*foreground: gray50
