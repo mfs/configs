@@ -78,8 +78,8 @@ main = do
     browser <- cfg "browser"
     xmonad $ defaultConfig
         { borderWidth        = 1
-        , normalBorderColor  = "grey30"
-        , focusedBorderColor = "#01304b"
+        , normalBorderColor  = "black"
+        , focusedBorderColor = "gray20"
         , workspaces         = myWorkspaces
         , terminal           = term
         , modMask            = mod4Mask
@@ -104,11 +104,12 @@ startup = do
 myManageHook = composeAll . concat $
     [ [ className =? c --> doCenterFloat | c <- myFloatClasses]
     , [ className =? "sun-applet-Main" --> doFloat]
+    , [ className =? "-c" --> doIgnore]
     , [ title     =? t --> doCenterFloat | t <- myFloatTitles]
     , [ fmap ( "Page Info" `isInfixOf`) title --> doCenterFloat]
     , [ fmap ( "JAVA:" `isInfixOf`) title --> doCenterFloat]
     , [ className =? "URxvt" -->
-            (ask >>= \w -> liftX (setOpacity w 0x99999998) >> idHook)]
+            (ask >>= \w -> liftX (setOpacity w 0xcccccccc) >> idHook)]
     , [ className =? c --> doShift "2:web" | c <- ["Namoroka", "Chromium"]]
     , [ className =? "XDvi" --> doShift2 "3:doc"]
     , [ className =? "Epdfview" --> doShift2 "3:doc"]
@@ -125,7 +126,7 @@ myManageHook = composeAll . concat $
 
         myFloatTitles = ["Downloads", "Add-ons", "Namoroka Preferences"
                         , "About Namoroka", "Event Tester", "OpenGL"
-                        , "Element Properties"]
+                        , "Element Properties", "glint"]
 
         doShift1 = doF . liftM2 (.) (viewOnScreen 0) W.shift
         doShift2 = doF . liftM2 (.) (viewOnScreen 1) W.shift
