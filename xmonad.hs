@@ -86,8 +86,8 @@ main = do
         , manageHook         = myManageHook <+> scratchpadManageHookDefault
         , startupHook        = startup
         , logHook            = dynamicLogWithPP $ myPP din sc
-        , layoutHook         = avoidStruts ( layoutHints
-              (smartBorders tiled ||| Mirror tiled ||| noBorders Full ||| Grid))
+        , layoutHook         = avoidStruts ( layoutHintsWithPlacement (0.5,0.5)
+              (tiled ||| Mirror tiled ||| Full ||| Grid))
         , keys               = \c -> myKeys browser `M.union` keys defaultConfig c
         , mouseBindings      = myMouseBindings
         }
