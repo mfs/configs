@@ -240,6 +240,8 @@ if [ "$TERM" != "dumb" ]; then
     alias jj='javac *.java'
     alias ls='ls --color=auto'
     alias ll='ls -lh --color=auto'
+    alias aurploader='aurploader -r'
+    alias vk='grep "map <F[0-9]\{1,2\}>" ~/.vimrc'
     alias grep='grep --color=auto'
     alias diff='colordiff'
     alias pacs='pacsearch'
