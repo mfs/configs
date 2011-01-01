@@ -122,7 +122,7 @@ myManageHook = composeAll . concat $
                          , "Gimp", "XDosEmu", "Nitrogen", "Nvidia-settings"
                          , "VirtualBox", "Sonata", "xine", "Blender:Render"
                          , "Vdesk.py", "org-scilab-modules-jvm-Scilab"
-                         ]
+                         , "qemu-system-x86_64"]
 
         myFloatTitles = ["Downloads", "Add-ons", "Namoroka Preferences"
                         , "About Namoroka", "Event Tester", "OpenGL"
