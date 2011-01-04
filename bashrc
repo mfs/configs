@@ -100,11 +100,15 @@ man() {
 }
 
 pacman() {
+    local PMCMD=/usr/bin/pacman
+
+    [[ -x /usr/bin/pacman-color ]] && PMCMD=/usr/bin/pacman-color
+
     if [[ "$1" =~ ^-S[cuy]|^-S$|^-R|^-U ]]
     then
-        sudo pacman-color $@
+        sudo $PMCMD $@
     else
-        pacman-color $@
+        $PMCMD $@
     fi
 }
 
