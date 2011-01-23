@@ -221,11 +221,6 @@ function tputcolors {
 
 }
 
-export GOROOT="$HOME/code/go"
-export GOARCH="amd64"
-export GOOS="linux"
-export GOBIN="$HOME/bin"
-
 export EDITOR=vim
 export HISTCONTROL=ignoredups
 export SCONSFLAGS="-Q -j 3"
