@@ -19,9 +19,12 @@ function exit_status {
 }
 
 function hg_ps1 {
-    local hgb=$( hg branch 2> /dev/null )
-    if [[ $hgb != "" ]]; then
-        printf $1 $hgb
+    if [[ -d .hg ]];
+    then
+        local hgb=$( hg branch 2> /dev/null )
+        if [[ $hgb != "" ]]; then
+            printf $1 $hgb
+        fi
     fi
 }
 
