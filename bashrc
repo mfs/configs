@@ -28,6 +28,12 @@ function hg_ps1 {
     fi
 }
 
+function router_ps1 {
+    if [[ $( </proc/sys/net/ipv4/ip_forward ) == 1 ]]; then
+        echo "-[0]- "
+    fi
+}
+
 function set_prompt {
     local BLA='\[\033[0;30m\]' # BLACK
     local DGR='\[\033[1;30m\]' # DGRAY
@@ -65,7 +71,8 @@ function set_prompt {
     fi
 
     # need to fix \[ \] around color code for exit status
-    PS1="${RED}$chroot_name${LGR}\u${WHI}@${LGR}\h \$(exit_status \$?) "
+    PS1="${RED}\$(router_ps1)"
+    PS1="${PS1}${RED}$chroot_name${LGR}\u${WHI}@${LGR}\h \$(exit_status \$?) "
     PS1="${PS1}${PUR}${tty} ${CYA}\w ${git_p}${hg_p}\n"
     PS1="${PS1}${CYA}>>> ${NOR}"
 
