@@ -236,6 +236,10 @@ shopt -s checkwinsize
 
 set_prompt
 
+export DIST=$( lsb_release -i | cut -f2 )
+[[ $DIST != "Arch" ]] && unset -f aur
+[[ $DIST != "Arch" ]] && unset -f pacman
+
 case "$TERM" in
 xterm*|rxvt*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
