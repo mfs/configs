@@ -2,8 +2,6 @@
 
 # need to prevent .git being searched on removable media
 
-export PATH=/usr/lib/cw:$PATH:$HOME/bin
-
 function exit_status {
     local RED='\033[0;31m' # RED
     local GRE='\033[0;32m' # GREEN
