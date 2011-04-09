@@ -226,6 +226,10 @@ function tputcolors {
 
 }
 
+function define {
+    curl -s dict://dict.org/d:$1 | grep -v '^[0-9]' | less
+}
+
 export EDITOR=vim
 export HISTCONTROL=ignoredups
 export SCONSFLAGS="-Q -j 3"

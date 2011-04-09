@@ -13,9 +13,11 @@ Arch Linux forums. In particular:
 - aur is based on [brisbin33's aurget][3]
 - cpf, mvf, goto by [drcouzelis and brisbin33][4]
 - cfg based on Peasantoid's Python [string manager][5]
+- [define is by gadamat][6]
 
 [1]: http://bbs.archlinux.org/viewtopic.php?id=56646
 [2]: http://bbs.archlinux.org/viewtopic.php?pid=658127#p658127
 [3]: http://bbs.archlinux.org/viewtopic.php?pid=493337#p493337
 [4]: http://bbs.archlinux.org/viewtopic.php?pid=697235#p697235
 [5]: http://bbs.archlinux.org/viewtopic.php?id=89030
+[6]: https://bbs.archlinux.org/viewtopic.php?pid=912445#p912445
