@@ -238,7 +238,7 @@ shopt -s checkwinsize
 
 set_prompt
 
-export DIST=$( lsb_release -i | cut -f2 )
+DIST=$( grep -o -e Arch -e Debian /etc/issue )
 [[ $DIST != "Arch" ]] && unset -f aur
 [[ $DIST != "Arch" ]] && unset -f pacman
 
