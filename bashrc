@@ -97,6 +97,11 @@ asm() {
     rmdir $ASM_DIR
 }
 
+syscall() {
+    grep "#define __NR_$1" /usr/include/asm/unistd_64.h | \
+        sed -e 's/.*__NR_//' -e 's/\s\+/ /' | column -t
+}
+
 man() {
     local RFC=/usr/share/doc/rfc/txt/$1.txt
     if [ -r $RFC ]
