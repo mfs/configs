@@ -235,6 +235,18 @@ function define {
     curl -s dict://dict.org/d:$1 | grep -v '^[0-9]' | less
 }
 
+function distro {
+    if [[ -e /etc/arch-release ]]; then
+        echo "Arch"
+    elif [[ -e /etc/debian_version ]]; then
+        echo "Debian"
+    elif [[ -e /etc/gentoo-release ]]; then
+        if [[ $(</etc/gentoo-release) =~ ([^[:space:]]+) ]]; then
+            echo "${BASH_REMATCH[1]}"
+        fi
+    fi
+}
+
 export EDITOR=vim
 export HISTCONTROL=ignoredups
 export SCONSFLAGS="-Q -j 3"
@@ -243,7 +255,7 @@ shopt -s checkwinsize
 
 set_prompt
 
-DIST=$( grep -o -e Arch -e Debian /etc/issue )
+DIST=$( distro )
 [[ $DIST != "Arch" ]] && unset -f aur
 [[ $DIST != "Arch" ]] && unset -f pacman
 
