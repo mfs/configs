@@ -38,7 +38,7 @@ command Run :tabnew | setlocal buftype=nofile | r ! #:p
 
 autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
 
-highlight OverLength ctermbg=darkred ctermfg=white
-match OverLength /\%>80v.\+\|\s\+$/
+highlight TrailingSpaces ctermbg=darkred ctermfg=white
+match TrailingSpaces /\s\+$/
 
 filetype plugin indent on
