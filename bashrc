@@ -19,10 +19,7 @@ function exit_status {
 function hg_ps1 {
     if [[ -d .hg ]];
     then
-        local hgb=$( hg branch 2> /dev/null )
-        if [[ $hgb != "" ]]; then
-            printf $1 $hgb
-        fi
+        printf $1 $hgb
     fi
 }
 
@@ -65,7 +62,7 @@ function set_prompt {
     fi
 
     if [[ $( type -t hg ) == "file" ]]; then
-        hg_p="\$(hg_ps1 '${LCY}hg:%s')"
+        hg_p="\$(hg_ps1 '${LCY}hg')"
     fi
 
     # need to fix \[ \] around color code for exit status
