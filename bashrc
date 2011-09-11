@@ -3,23 +3,20 @@
 # need to prevent .git being searched on removable media
 
 function exit_status {
-    local RED='\033[0;31m' # RED
-    local GRE='\033[0;32m' # GREEN
-
     local es=$1
 
     if [[ $es == 0 ]];
     then
-        printf "${GRE}($es)"
+        printf "$2($es)"
     else
-        printf "${RED}($es)"
+        printf "$3($es)"
     fi
 }
 
 function hg_ps1 {
     if [[ -d .hg ]];
     then
-        printf $1 $hgb
+        printf "$1 " $hgb
     fi
 }
 
@@ -58,20 +55,19 @@ function set_prompt {
     fi
 
     if [[ $( type -t __git_ps1 ) == "function" ]]; then
-        git_p="\$(__git_ps1 '${LCY}git:%s')"
+        git_p="\$(__git_ps1 '${LCY}git:%s ')"
     fi
 
     if [[ $( type -t hg ) == "file" ]]; then
         hg_p="\$(hg_ps1 '${LCY}hg')"
     fi
 
-    # need to fix \[ \] around color code for exit status
     PS1="${RED}$router_p"
-    PS1="${PS1}${RED}$chroot_name${LGR}\u${WHI}@${LGR}\h \$(exit_status \$?) "
-    PS1="${PS1}${PUR}${tty} ${CYA}\w ${git_p}${hg_p}\n"
-    PS1="${PS1}${CYA}>>> ${NOR}"
+    PS1="${PS1}${RED}$chroot_name${LGR}\u${WHI}@${LGR}\h \$(exit_status \$? '${GRE}' '${RED}') "
+    PS1="${PS1}${PUR}${tty} ${CYA}\w ${git_p}${hg_p}"
+    PS1="${PS1}${LGR}\$ ${NOR}"
 
-    PS2="${CYA}... ${NOR}"
+    PS2="${CYA}. ${NOR}"
 }
 
 [ -z "$PS1" ] && return
