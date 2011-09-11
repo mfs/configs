@@ -31,7 +31,8 @@ URxvt*boldFont: -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
 URxvt*italicFont: -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
 URxvt*boldItalicFont: -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
 
-URxvt*background: black
+URxvt*depth: 32
+URxvt*background: rgba:0000/0000/0000/dddd
 URxvt*foreground: gray50
 
 URxvt*colorBD: green
