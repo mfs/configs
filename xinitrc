@@ -36,13 +36,13 @@ xcompmgr &
 eval `ssh-agent`
 
 # Start window manager
-/home/mike/bin/xmonad & pid=$!
+/home/mike/code/dwm/dwm & pid=$!
 
 # Load ssh keys
 SSH_ASKPASS='/usr/lib/openssh/x11-ssh-askpass' ssh-add < /dev/null
 
 # Start status bars
-/home/mike/bin/status-bars.py &
+/home/mike/code/py-dwm-status/py-dwm-status &
 
 wait $pid
 
