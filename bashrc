@@ -240,6 +240,8 @@ function distro {
     fi
 }
 
+export PROMPT_DIRTRIM=1
+export BROWSER=chromium
 export EDITOR=vim
 export HISTCONTROL=ignoredups
 export SCONSFLAGS="-Q -j 3"
