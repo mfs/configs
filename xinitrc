@@ -20,7 +20,7 @@ xsetroot -cursor_name left_ptr
 
 # If two monitors are present, setup tiling.
 if [[ -x /usr/bin/xrandr ]]; then
-    OUTPUTS=($( xrandr | grep connected | cut -f 1 -d ' '))
+    OUTPUTS=($( xrandr | grep ' connected ' | cut -f 1 -d ' '))
     if [[ ${#OUTPUTS[@]} == 2 ]]; then
         xrandr --output ${OUTPUTS[0]} --left-of ${OUTPUTS[1]}
     fi
@@ -42,7 +42,7 @@ eval `ssh-agent`
 SSH_ASKPASS='/usr/lib/openssh/x11-ssh-askpass' ssh-add < /dev/null
 
 # Start status bars
-/home/mike/code/py-dwm-status/py-dwm-status &
+/home/mike/code/py-dwm-status/py-dwm-status.py -X &
 
 wait $pid
 
