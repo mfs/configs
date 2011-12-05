@@ -39,7 +39,7 @@ eval `ssh-agent`
 /home/mike/code/dwm/dwm & pid=$!
 
 # Load ssh keys
-SSH_ASKPASS='/usr/lib/openssh/x11-ssh-askpass' ssh-add < /dev/null
+SSH_ASKPASS='/usr/lib/ssh/x11-ssh-askpass' ssh-add < /dev/null
 
 # Start status bars
 /home/mike/code/py-dwm-status/py-dwm-status.py -X &
