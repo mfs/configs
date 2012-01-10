@@ -264,6 +264,7 @@ esac
 
 if [ "$TERM" != "dumb" ]; then
     [[ -r ~/.dircolors ]] && eval "`dircolors -b ~/.dircolors`"
+    alias emacs='emacs -nw'
     alias jj='javac *.java'
     alias ls='ls --color=auto'
     alias ll='ls -lh --color=auto'
@@ -280,9 +281,5 @@ if [ "$TERM" != "dumb" ]; then
     alias quakelive='LD_PRELOAD=/usr/lib/libpng12.so
                      /usr/bin/firefox http://www.quakelive.com'
 fi
-
-#if [ -f /etc/bash_completion ]; then
-#    . /etc/bash_completion
-#fi
 
 
