@@ -1,0 +1,16 @@
+# [cmgr] .hgrc
+
+[ui]
+username = Mike Sampson <mike@sambodata.com>
+
+[extensions]
+color =
+pager =
+hgext.mq =
+
+[color]
+status.deleted = cyan bold
+status.unknown = magenta bold
+
+[pager]
+pager = LESS='FSRX' less
