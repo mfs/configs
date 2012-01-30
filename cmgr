@@ -60,7 +60,7 @@ function apply_command()
 {
     for FILE in *
     do
-        MATCH=$( grep -m 1 '[[:space:]]\+\[cmgr\]\(.*\)' $FILE )
+        MATCH=$( head -n 3 $FILE | grep -m 1 '[[:space:]]\+\[cmgr\]\(.*\)' )
 
         if [[ "$MATCH" =~ [[:space:]]\[cmgr\][[:space:]](.*) ]]
         then
