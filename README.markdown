@@ -14,6 +14,7 @@ Arch Linux forums. In particular:
 - cpf, mvf, goto by [drcouzelis and brisbin33][4]
 - cfg based on Peasantoid's Python [string manager][5]
 - [define is by gadamat][6]
+- yt is from [this YouTube video][7]
 
 [1]: http://bbs.archlinux.org/viewtopic.php?id=56646
 [2]: http://bbs.archlinux.org/viewtopic.php?pid=658127#p658127
@@ -21,3 +22,4 @@ Arch Linux forums. In particular:
 [4]: http://bbs.archlinux.org/viewtopic.php?pid=697235#p697235
 [5]: http://bbs.archlinux.org/viewtopic.php?id=89030
 [6]: https://bbs.archlinux.org/viewtopic.php?pid=912445#p912445
+[7]: http://www.youtube.com/watch?v=QCuq0_nY3Xk

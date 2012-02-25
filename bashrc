@@ -199,6 +199,11 @@ function aur {
     ls -lh
 }
 
+function yt {
+    mplayer -fs -cookies -cookies-file /tmp/cookie.txt \
+        $(youtube-dl -g --cookies /tmp/cookie.txt "$1")
+}
+
 function tputcolors {
     local txtund=$(tput sgr 0 1)          # Underline
     local txtbld=$(tput bold)             # Bold
