@@ -39,7 +39,7 @@ xcompmgr &
 eval `ssh-agent`
 
 # Start window manager
-/home/mike/code/dwm/dwm & pid=$!
+/home/mike/bin/wm & pid=$!
 
 # Load ssh keys
 SSH_ASKPASS='/usr/lib/ssh/x11-ssh-askpass' ssh-add < /dev/null
