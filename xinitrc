@@ -1,10 +1,10 @@
 # [cmgr] .xinitrc
 
 # Load X resources
-xrdb -merge .Xdefaults
+xrdb -merge ~/.Xdefaults
 
 # Load X keyy mappings
-xmodmap $HOME/.xmodmap
+[[ -f ~/.xmodmap ]] && xmodmap ~/.xmodmap
 
 xset r rate 300 25
 
@@ -34,13 +34,13 @@ xcompmgr &
 eval `ssh-agent`
 
 # Start window manager
-/home/mike/bin/wm & pid=$!
+~/bin/wm & pid=$!
 
 # Load ssh keys
 SSH_ASKPASS='/usr/lib/ssh/x11-ssh-askpass' ssh-add < /dev/null
 
 # Start status bars
-/home/mike/code/py-dwm-status/py-dwm-status.py -X &
+~/code/py-dwm-status/py-dwm-status.py -X &
 
 wait $pid
 
