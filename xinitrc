@@ -24,6 +24,12 @@ xsetroot -cursor_name left_ptr
 # Set wallpaper
 nitrogen --restore
 
+# Start conky instances
+for conkyrc in ~/.conkyrc0 ~/.conkyrc1
+do
+    [[ -f $conkyrc ]] && conky -c $conkyrc
+done
+
 # Compositing
 xcompmgr &
 

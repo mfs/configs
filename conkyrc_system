@@ -1,0 +1,65 @@
+background yes
+font -windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1
+use_xft no
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_transparent yes
+double_buffer yes
+minimum_size 200 100
+maximum_width 400
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color 0390e1
+default_shade_color black
+default_outline_color blue
+alignment top_left
+gap_x 10
+gap_y 140
+no_buffers yes
+cpu_avg_samples 2
+pad_percents 3
+override_utf8_locale no
+uppercase no
+
+TEXT
+
+# SYSTEM
+${goto 25}SYSTEM ${hr 2}
+${goto 25}Hostname:${goto 160}$nodename
+${goto 25}Kernel:${goto 160}$kernel ($machine)
+${goto 25}Uptime:${goto 160}$uptime
+${goto 25}Pacman updates:${goto 160}${texeci 3600 pacman -Qu | wc -l}
+${goto 25}AUR updates:${goto 160}${texeci 3600 cower -u | wc -l}
+
+${goto 25}CPU ${hr 2}
+${goto 90}${cpugraph 38,172 fef7b2 e18522 -t}
+${goto 30}Core 1${goto 100}${freq_g 1}GHz ${goto 175}${cpu cpu1}% ${alignr}${cpubar cpu1 6,80}
+${goto 30}Core 2${goto 100}${freq_g 2}GHz ${goto 175}${cpu cpu2}% ${alignr}${cpubar cpu2 6,80}
+${goto 30}Core 3${goto 100}${freq_g 3}GHz ${goto 175}${cpu cpu3}% ${alignr}${cpubar cpu3 6,80}
+${goto 30}Core 4${goto 100}${freq_g 4}GHz ${goto 175}${cpu cpu4}% ${alignr}${cpubar cpu4 6,80}
+${goto 30}Core 5${goto 100}${freq_g 5}GHz ${goto 175}${cpu cpu5}% ${alignr}${cpubar cpu5 6,80}
+${goto 30}Core 6${goto 100}${freq_g 6}GHz ${goto 175}${cpu cpu6}% ${alignr}${cpubar cpu6 6,80}
+
+${goto 25}MEMORY ${hr 2}
+${goto 25}${mem}  ${goto 100}${memmax} ${goto 175}${memperc}% ${alignr}${membar 6, 80}
+${goto 25}${swap} ${goto 100}${swapmax}${goto 175}${swapperc}% ${alignr}${swapbar 6, 80}
+
+# DISK
+${goto 25}DISK${font} ${hr 1}
+${goto 90}${diskiograph 38,172 fef7b2 e18522}
+${goto 30}${voffset 5}/${goto 125}${fs_size /}${goto 200}${fs_used_perc /}%${alignr}${fs_bar 6,80 /}
+${goto 30}/home${goto 125}${fs_size /home}${goto 200}${fs_used_perc /home}%${alignr}${fs_bar 6,80 /home}
+${goto 30}/mnt/backup${goto 125}${fs_size /mnt/backup} ${goto 200}${fs_used_perc /mnt/backup}% ${alignr}${fs_bar 6,80 /mnt/backup}
+${voffset 5}${goto 30}/dev/sda${goto 100}Read: ${diskio_read /dev/sda}${goto 200}Write: ${diskio_write /dev/sda}
+${goto 30}/dev/sdb${goto 100}Read: ${diskio_read /dev/sdb}${goto 200}Write: ${diskio_write /dev/sdb}
+${goto 30}/dev/sdc${goto 100}Read: ${diskio_read /dev/sdc}${goto 200}Write: ${diskio_write /dev/sdc}
+
+# NETWORK
+${goto 25}NETWORK${font} ${hr 1}
+${goto 85}${downspeedgraph eth0 24,88 fef7b2 e18522}${goto 185}${upspeedgraph eth0 24,88 fef7b2 e18522}
+${goto 85}Down: ${downspeed eth0}${goto 185}Up: ${upspeed eth0}
+
