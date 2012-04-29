@@ -1,0 +1,93 @@
+;; -*-lisp-*-
+
+(in-package :stumpwm)
+
+;; colors
+
+; default colors: ("black" "red" "green" "yellow" "blue" "magenta" "cyan" "white")
+
+; Requires the hex colors patch:
+; http://lists.gnu.org/archive/html/stumpwm-devel/2012-01/msg00001.html
+
+(defun color (key)
+  (let ((colors '(:black #x000000
+                  :red #xe10390
+                  :green #x90e103
+                  :yellow #xe1c303
+                  :blue #x0390e1
+                  :magenta #xe10321
+                  :cyan #x0345e1
+                  :white #xffffff)))
+    (getf colors key)))
+
+(setf *bright-colors* nil)
+
+(setf *colors*
+  (mapcar #'color
+    '(:black :red :green :yellow :blue :magenta :cyan :white)))
+
+(mapcar #'update-color-map *screen-list*)
+
+(set-bg-color (color :black))
+(set-fg-color (color :blue))
+(set-border-color (color :blue))
+(set-focus-color (color :blue))
+(set-unfocus-color "gray30")
+(setf *mode-line-background-color* (color :black))
+(setf *mode-line-border-color* (color :black))
+
+;; ui
+
+(set-font "-windows-proggyclean-medium-r-normal--13-80-96-96-c-70-iso8859-1")
+
+(setf *screen-mode-line-format* "^2*[%n] ^n%W ^> ^4* %d")
+
+(dolist (head (screen-heads (current-screen)))
+  (enable-mode-line (current-screen) head t))
+
+(setf *message-window-gravity* :center)
+(setf *input-window-gravity* :center)
+
+(setf *window-border-style* :thin)
+
+(setf *mouse-focus-policy* :sloppy)
+
+(setf *new-frame-action* :empty)
+
+;; groups
+
+(grename "0")
+
+;; keys
+
+(define-key *root-map* (kbd "C-c") "exec urxvt")
+(define-key *root-map* (kbd "c") "exec urxvt")
+
+(define-key *top-map* (kbd "s-c") "exec urxvt")
+(define-key *top-map* (kbd "s-w") "exec chromium")
+
+;; functions
+
+; don't use reverse video for current window.
+(defun fmt-highlight (s)
+  (format nil "^4*~A^n" s))
+
+;; commands
+
+(defcommand rtorrent () ()
+  "Launch rtorrent in a new frame, 20% the height of the current frame."
+  (vsplit "0.8")
+  (move-focus :down)
+  (run-shell-command "urxvt -e rtorrent -d ~/incoming"))
+
+(defcommand surfraw (elvi term) ((:string "elvi: ")(:string "term: "))
+  "Surfraw"
+  (run-shell-command (concatenate 'string "surfraw " elvi " " term)))
+
+(defcommand xkcd () ()
+  "Open latest xkcd comic in feh."
+  (run-shell-command "feh $( xkcd )"))
+
+(defcommand xkcd-random () ()
+  "Open random xkcd comic in feh."
+  (run-shell-command "feh $( xkcd --random )"))
