@@ -45,9 +45,7 @@ eval `ssh-agent`
 # Load ssh keys
 SSH_ASKPASS='/usr/lib/ssh/x11-ssh-askpass' ssh-add < /dev/null
 
-# Start status bars
-~/code/py-dwm-status/py-dwm-status.py -X &
-
+# Wait for wm to exit
 wait $pid
 
 # Kill agent
