@@ -18,7 +18,7 @@ xset +fp /usr/local/share/fonts/codec
 # Replace ugly default cursor
 xsetroot -cursor_name left_ptr
 
-# Execure script to configure monitors
+# Execute script to configure monitors
 [[ -x ~/bin/xrandr-setup ]] && ~/bin/xrandr-setup
 
 # Set wallpaper
