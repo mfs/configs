@@ -44,6 +44,13 @@ ${goto 30}Core 4${goto 100}${freq_g 4}GHz ${goto 175}${cpu cpu4}% ${alignr}${cpu
 ${goto 30}Core 5${goto 100}${freq_g 5}GHz ${goto 175}${cpu cpu5}% ${alignr}${cpubar cpu5 6,80}
 ${goto 30}Core 6${goto 100}${freq_g 6}GHz ${goto 175}${cpu cpu6}% ${alignr}${cpubar cpu6 6,80}
 
+${goto 25}PROCESSES ${hr 2}
+${goto 30}${top name 1}${top cpu 1}${top mem 1}
+${goto 30}${top name 2}${top cpu 2}${top mem 2}
+${goto 30}${top name 3}${top cpu 3}${top mem 3}
+${goto 30}${top name 4}${top cpu 4}${top mem 4}
+${goto 30}${top name 5}${top cpu 5}${top mem 5}
+
 ${goto 25}MEMORY ${hr 2}
 ${goto 25}${mem}  ${goto 100}${memmax} ${goto 175}${memperc}% ${alignr}${membar 6, 80}
 ${goto 25}${swap} ${goto 100}${swapmax}${goto 175}${swapperc}% ${alignr}${swapbar 6, 80}
