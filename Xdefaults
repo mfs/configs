@@ -22,6 +22,8 @@ SshAskpass*Button.borderWidth: 2
 
 ! urxvt
 !URxvt*termName: rxvt
+URxvt*iso14755: false
+URxvt*iso14755_52: false
 URxvt*scrollBar: false
 URxvt*scrollstyle: plain
 URxvt*scrollBar_right: true
