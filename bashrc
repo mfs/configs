@@ -55,7 +55,7 @@ function set_prompt {
     fi
 
     if [[ $( type -t __git_ps1 ) == "function" ]]; then
-        git_p="\$(__git_ps1 '${LCY}git:%s ')"
+        git_p="\$(__git_ps1 '${LCY}[%s] ' )"
     fi
 
     if [[ $( type -t hg ) == "file" ]]; then
@@ -224,6 +224,7 @@ export SCONSFLAGS="-Q -j 3"
 
 shopt -s checkwinsize
 
+source /usr/share/git/git-prompt.sh
 set_prompt
 
 DIST=$( distro )
