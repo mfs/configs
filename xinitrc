@@ -8,13 +8,6 @@ xrdb -merge ~/.Xdefaults
 
 xset r rate 300 25
 
-# Load fonts
-xset +fp /usr/local/share/fonts/artwiz-fonts
-xset +fp /usr/local/share/fonts/proggy
-xset +fp /usr/local/share/fonts/profont-x11
-xset +fp /usr/local/share/fonts/corel
-xset +fp /usr/local/share/fonts/codec
-
 # Replace ugly default cursor
 xsetroot -cursor_name left_ptr
 
@@ -31,22 +24,22 @@ do
 done
 
 # Compositing
-xcompmgr &
+#xcompmgr &
 
 # Disable trackpad while typing
 [[ -x /usr/bin/syndaemon ]] && /usr/bin/syndaemon -i 1 -d
 
 # Start ssh-agent
-eval `ssh-agent`
+#eval `ssh-agent`
 
 # Start window manager
 ~/bin/wm & pid=$!
 
 # Load ssh keys
-SSH_ASKPASS='/usr/lib/ssh/x11-ssh-askpass' ssh-add < /dev/null
+#SSH_ASKPASS='/usr/lib/ssh/x11-ssh-askpass' ssh-add < /dev/null
 
 # Wait for wm to exit
 wait $pid
 
 # Kill agent
-ssh-agent -k
+#ssh-agent -k
