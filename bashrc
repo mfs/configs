@@ -124,19 +124,6 @@ cpf() { cp "$@" && goto "$_"; }
 
 mvf() { mv "$@" && goto "$_"; }
 
-function cd {
-    builtin cd "$@"
-    [ -n "$DISPLAY" ] && pwd | xsel -s
-    if [ "$( pwd )" = $HOME ]
-    then
-        local COUNT=$( ls -p | grep -v '/' | wc -l )
-        if [ $COUNT -gt 0 ]
-        then
-            echo "$(tput setaf 1)### $COUNT FILES IN ~ ###$(tput sgr0)"
-        fi
-    fi
-}
-
 function uml {
     [ -e README ] || return
     [[ $( head -n 1 README ) =~ Linux\ kernel\ release\ 2.6.xx ]] || return
@@ -252,7 +239,6 @@ if [ "$TERM" != "dumb" ]; then
     alias pacs='pacsearch'
     alias ss='sudo shutdown -h now'
     alias pizza='echo "PIZZA READY IN:"; utimer -c 15m'
-    alias ssh='TERM=xterm ssh'
     alias dp='pwd | xsel -s'
     alias pd='cd "$( xsel -so )"'
     alias quakelive='LD_PRELOAD=/usr/lib/libpng12.so
