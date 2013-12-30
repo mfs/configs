@@ -30,7 +30,7 @@ done
 [[ -x /usr/bin/syndaemon ]] && /usr/bin/syndaemon -i 1 -d
 
 # Start ssh-agent
-#eval `ssh-agent`
+eval $( ssh-agent )
 
 # Start window manager
 ~/bin/wm & pid=$!
