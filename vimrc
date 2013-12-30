@@ -10,7 +10,7 @@ set textwidth=80
 set cindent
 set cursorline
 set hlsearch
-set mouse=a " enable middle mouse button paste
+set mouse=r " enable middle mouse button paste
 
 " runtime syntax/colortest.vim
 " :so $VIMRUNTIME/syntax/hitest.vim
@@ -42,3 +42,6 @@ highlight TrailingSpaces ctermbg=darkred ctermfg=white
 match TrailingSpaces /\s\+$/
 
 filetype plugin indent on
+
+" vims yaml syntax highlighting performance is crap
+autocmd FileType yaml set syntax=off
