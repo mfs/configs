@@ -1,6 +1,7 @@
 # [cmgr] .bashrc
 
-# need to prevent .git being searched on removable media
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
 function exit_status {
     local es=$1
@@ -69,8 +70,6 @@ function set_prompt {
 
     PS2="${CYA}. ${NOR}"
 }
-
-[ -z "$PS1" ] && return
 
 asm() {
 
