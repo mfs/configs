@@ -213,6 +213,8 @@ shopt -s checkwinsize
 source /usr/share/git/git-prompt.sh
 set_prompt
 
+eval $( keychain --quiet --agents ssh --eval id_rsa )
+
 DIST=$( distro )
 [[ $DIST != "Arch" ]] && unset -f aur
 [[ $DIST != "Arch" ]] && unset -f pacman
