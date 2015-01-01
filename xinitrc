@@ -4,7 +4,7 @@
 xrdb -merge ~/.Xdefaults
 
 # Load X keyy mappings
-[[ -f ~/.xmodmap ]] && xmodmap ~/.xmodmap
+[[ -f ~/.xmodmaprc ]] && xmodmap ~/.xmodmaprc
 
 xset r rate 300 25
 
