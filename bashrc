@@ -219,6 +219,9 @@ DIST=$( distro )
 [[ $DIST != "Arch" ]] && unset -f aur
 [[ $DIST != "Arch" ]] && unset -f pacman
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 case "$TERM" in
 xterm*|rxvt*)
     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
