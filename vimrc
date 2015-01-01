@@ -1,11 +1,10 @@
 " [cmgr] .vimrc
 
+execute pathogen#infect()
+
 syntax on
 
 set number
-set tabstop=4
-set shiftwidth=4
-set expandtab
 set textwidth=80
 set cindent
 set cursorline
@@ -18,6 +17,8 @@ highlight CursorLine cterm=none ctermbg=233
 highlight LineNr ctermfg=7 ctermbg=233
 highlight Pmenu ctermfg=0 ctermbg=7
 highlight PmenuSel ctermfg=0 ctermbg=2
+
+highlight clear SignColumn
 
 map <S-Left> :bp<CR>
 map <S-Right> :bn<CR>
