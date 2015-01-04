@@ -7,6 +7,7 @@ xrdb -merge ~/.Xdefaults
 [[ -f ~/.xmodmaprc ]] && xmodmap ~/.xmodmaprc
 
 xset r rate 300 25
+numlockx on
 
 # Replace ugly default cursor
 xsetroot -cursor_name left_ptr
