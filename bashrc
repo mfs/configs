@@ -195,9 +195,7 @@ shopt -s checkwinsize
 source /usr/share/git/git-prompt.sh
 set_prompt
 
-if [[ -z $( pidof ssh-agent ) && -z $( pidof gpg-agent ) ]]; then
-    eval $( keychain --quiet --agents gpg,ssh --eval id_rsa )
-fi
+eval $( keychain --quiet --agents gpg,ssh --eval id_rsa )
 
 DIST=$( distro )
 [[ $DIST != "Arch" ]] && unset -f aur
