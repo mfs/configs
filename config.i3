@@ -21,7 +21,7 @@ for_window [class="Vncviewer"] floating enable
 assign [class="Chromium"] 3
 
 # start a terminal
-bindsym Mod1+Return exec i3-sensible-terminal
+bindsym Mod1+Return exec termite
 
 # kill focused window
 bindsym Mod1+Shift+q kill
