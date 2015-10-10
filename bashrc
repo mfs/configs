@@ -214,6 +214,7 @@ esac
 
 if [ "$TERM" != "dumb" ]; then
     [[ -r ~/.dircolors ]] && eval "`dircolors -b ~/.dircolors`"
+    alias ssh='TERM=xterm-256color ssh'
     alias emacs='emacs -nw'
     alias jj='javac *.java'
     alias ls='ls --color=auto'
