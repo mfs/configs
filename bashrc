@@ -224,7 +224,6 @@ if [ "$TERM" != "dumb" ]; then
     alias grep='grep --color=auto'
     alias diff='colordiff'
     alias pacs='pacsearch'
-    alias ss='sudo shutdown -h now'
     alias pizza='echo "PIZZA READY IN:"; utimer -c 15m'
     alias dp='pwd | xsel -s'
     alias pd='cd "$( xsel -so )"'
