@@ -233,3 +233,5 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 
+# Hook for desk activation
+[ -n "$DESK_ENV" ] && source "$DESK_ENV"
