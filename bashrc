@@ -227,3 +227,6 @@ fi
 
 # Hook for desk activation
 [ -n "$DESK_ENV" ] && source "$DESK_ENV"
+
+# Avoid seeing failed exit code in initial prompt from above test.
+/bin/true
