@@ -43,12 +43,6 @@ function set_prompt {
     local tty=$( tty )
     tty=${tty:5}
 
-    if [[ $( </proc/sys/net/ipv4/ip_forward ) == 1 ]]; then
-        router_p="-[0]- "
-    else
-        router_p=""
-    fi
-
     if [ -r /etc/chroot ]; then
         chroot_name="($(cat /etc/chroot))"
     elif [ -r /etc/debian_chroot ]; then
@@ -63,8 +57,7 @@ function set_prompt {
         hg_p="\$(hg_ps1 '${LCY}hg')"
     fi
 
-    PS1="${RED}$router_p"
-    PS1="${PS1}${RED}$chroot_name${LGR}\u${WHI}@${LGR}\h \$(exit_status \$? '${GRE}' '${RED}') "
+    PS1="${RED}$chroot_name${LGR}\u${WHI}@${LGR}\h \$(exit_status \$? '${GRE}' '${RED}') "
     PS1="${PS1}${PUR}${tty} ${CYA}\w ${git_p}${hg_p}"
     PS1="${PS1}${LGR}\$ ${NOR}"
 
