@@ -1,6 +1,22 @@
 " [cmgr] .vimrc
 
-execute pathogen#infect()
+set nocompatible              " required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sleuth.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'airblade/vim-gitgutter.git'
+Plugin 'Raimondi/delimitMate'
+Plugin 'rust-lang/rust.vim'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 syntax on
 
