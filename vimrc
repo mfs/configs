@@ -1,9 +1,27 @@
-" [cmgr] .vimrc
+" ========= Vundle Start ========
+set nocompatible
+filetype off
 
-execute pathogen#infect()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'rust-lang/rust.vim'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Raimondi/delimitMate'
+
+call vundle#end()
+filetype plugin indent on
+" ======== Vundle End ========
+
+set laststatus=2
 
 syntax on
-
 set number
 set textwidth=80
 set cindent
@@ -37,12 +55,8 @@ cabbrev help tab help
 
 command Run :tabnew | setlocal buftype=nofile | r ! #:p
 
-autocmd BufNewFile * silent! 0r ~/.vim/templates/%:e.tpl
-
 highlight TrailingSpaces ctermbg=darkred ctermfg=white
 match TrailingSpaces /\s\+$/
-
-filetype plugin indent on
 
 " vims yaml syntax highlighting performance is crap
 autocmd FileType yaml set syntax=off
