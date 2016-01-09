@@ -22,6 +22,7 @@ assign [class="Chromium"] 3
 
 # start a terminal
 bindsym Mod1+Return exec termite
+bindsym F1 exec termite
 
 # kill focused window
 bindsym Mod1+Shift+q kill
