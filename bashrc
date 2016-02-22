@@ -20,6 +20,7 @@ alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias grep='grep --color=auto'
 alias diff='colordiff'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # ssh-agent - http://rabexc.org/posts/pitfalls-of-ssh-agents
 ssh-add -l &>/dev/null
