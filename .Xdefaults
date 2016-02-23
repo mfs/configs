@@ -1,5 +1,3 @@
-! [cmgr] .Xdefaults
-
 Xcursor.theme: Breeze_Obsidian
 
 SshAskpass.foreground: #7f7f7f

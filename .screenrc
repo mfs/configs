@@ -1,4 +1,3 @@
-# [cmgr] .screenrc
 hardstatus on
 hardstatus alwayslastline
 hardstatus string "%{= dd} %{m}%H%=%{g}%w%=%{c}%d-%m-%Y %c "
