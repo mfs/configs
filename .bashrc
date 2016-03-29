@@ -12,6 +12,8 @@ shopt -s checkwinsize
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
 eval $(dircolors ~/.dircolors)
 alias ssh='TERM=xterm-256color ssh'
 alias ls='ls --color=auto'
