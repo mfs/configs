@@ -18,6 +18,7 @@ eval $(dircolors ~/.dircolors)
 alias ssh='TERM=xterm-256color ssh'
 alias ls='ls --color=auto'
 alias ll='ls -lh'
+alias dt='dmesg | tail'
 alias grep='grep --color=auto'
 alias diff='colordiff'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
