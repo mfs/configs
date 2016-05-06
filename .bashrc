@@ -23,6 +23,8 @@ alias grep='grep --color=auto'
 alias diff='colordiff'
 alias iso8601='date --iso-8601=seconds'
 alias cert='openssl x509 -noout -text -in'
+alias ..='cd ..'
+alias ...='cd ../..'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # ssh-agent - http://rabexc.org/posts/pitfalls-of-ssh-agents
