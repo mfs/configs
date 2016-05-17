@@ -14,6 +14,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Raimondi/delimitMate'
+Plugin 'racer-rust/vim-racer'
 
 call vundle#end()
 filetype plugin indent on
@@ -28,6 +29,7 @@ set cindent
 set cursorline
 set hlsearch
 set mouse=r " enable middle mouse button paste
+set hidden
 
 " runtime syntax/colortest.vim
 " :so $VIMRUNTIME/syntax/hitest.vim

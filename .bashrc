@@ -6,6 +6,7 @@ export BROWSER=chromium
 export EDITOR=vim
 export HISTCONTROL=ignoredups
 export SCONSFLAGS="-Q -j 3"
+export RUST_SRC_PATH="$HOME/rust/src/"
 
 shopt -s checkwinsize
 
