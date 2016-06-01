@@ -29,6 +29,7 @@ for_window [class="Flirc"] floating enable
 for_window [class="Nitrogen"] floating enable
 for_window [class="MPlayer"] floating enable
 for_window [class="mercury"] floating enable
+for_window [class="Gimp"] floating enable
 
 
 for_window [class="Minecraft 1.7.10"] floating enable
