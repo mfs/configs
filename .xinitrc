@@ -25,7 +25,7 @@ done
 # Compositing
 #xcompmgr &
 
-pulseaudio --start
+#pulseaudio --start
 
 # Disable trackpad while typing
 [[ -x /usr/bin/syndaemon ]] && /usr/bin/syndaemon -i 1 -d
