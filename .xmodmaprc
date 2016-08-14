@@ -1,2 +1,7 @@
-clear lock
-keycode 0x42 = Escape
+! Remap Print, Scroll_Lock and Pause
+! This also removes Sys_Req though it's disabled on most distros. Add it back
+! in if you need it.
+keycode 107 = F13 F13 F13 F13 F13 F13
+keycode 78 = F14 F14 F14 F14 F14 F14
+keycode 127 = F15 F15 F15 F15 F15 F15
+
