@@ -32,6 +32,7 @@ for_window [class="MPlayer"] floating enable
 for_window [class="mercury"] floating enable
 for_window [class="Gimp"] floating enable
 for_window [class="glutin window"] floating enable
+for_window [class="st-256color"] border pixel
 
 
 for_window [class="Minecraft 1.7.10"] floating enable
@@ -65,8 +66,10 @@ for_window [class="Chromium-browser"] border 1pixel
 #bindsym $mod+F9 [class="MPlayer"] move absolute position 10 px 10 px
 
 # start a terminal
-bindsym $mod+Return exec termite
-bindsym F1 exec termite
+bindsym $mod+Return exec term
+bindsym F13 exec termite
+bindsym F14 exec chromium
+bindsym F15 exec i3lock -t -i ~/lock_screen.png
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -187,12 +190,12 @@ bar {
     font pango:Inconsolata 11
     position top
     output DP2
-    status_command i3status
+    status_command py3status
 }
 
 bar {
     font pango:Inconsolata 11
     position top
     output VGA1
-    status_command i3status
+    status_command py3status
 }
