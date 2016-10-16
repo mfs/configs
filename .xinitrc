@@ -25,13 +25,11 @@ done
 # Compositing
 #xcompmgr &
 
-#pulseaudio --start
-
 # Disable trackpad while typing
 [[ -x /usr/bin/syndaemon ]] && /usr/bin/syndaemon -i 1 -d
 
 # Start window manager
-~/bin/wm & pid=$!
+xmonad & pid=$!
 
 # Load ssh keys
 #SSH_ASKPASS='/usr/lib/ssh/x11-ssh-askpass' ssh-add < /dev/null
