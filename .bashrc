@@ -7,6 +7,8 @@ export EDITOR=vim
 export HISTCONTROL=ignoredups
 export SCONSFLAGS="-Q -j 3"
 export RUST_SRC_PATH="$HOME/rust/src/"
+PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+
 
 shopt -s checkwinsize
 
