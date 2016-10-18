@@ -2,5 +2,12 @@ Config {
 	font = "xft:Inconsolata:size=11:antialias=true:autohint=true",
 	bgColor = "#1d1f21",
 	fgColor = "#c5c8c6",
-	template = "%StdinReader% }{ %theDate%"
+	commands = [
+		Run Date "%a %b %_d %Y %H:%M:%S" "date" 10,
+		Run Com "ipv6" [] "" 10,
+		Run StdinReader
+	],
+	template = " %StdinReader% }{ %ipv6% | %date% "
 }
+
+-- ipv6 => ip -6 addr | grep global | awk '{print $2}'
