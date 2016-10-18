@@ -1,5 +1,6 @@
 import XMonad
 import XMonad.Layout.Spacing
+import XMonad.Layout.Renamed
 import XMonad.Layout.ThreeColumns
 import XMonad.Hooks.DynamicLog
 
@@ -12,7 +13,7 @@ colorMagenta = "#b294bb"
 colorCyan    = "#8abeb7"
 colorWhite   = "#c5c8c6"
 
-layout =  spacing 12 (three ||| tiled ||| Mirror tiled ||| Full)
+layout =  renamed [CutWordsLeft 2] $ spacing 12 (three ||| tiled ||| Mirror tiled ||| Full)
 	where
 		three = ThreeColMid nmaster delta (1/3)
 		tiled = Tall nmaster delta ratio
