@@ -13,13 +13,17 @@ colorMagenta = "#b294bb"
 colorCyan    = "#8abeb7"
 colorWhite   = "#c5c8c6"
 
-layout =  renamed [CutWordsLeft 2] $ spacing 12 (three ||| tiled ||| Mirror tiled ||| Full)
+layout =  three ||| tiled ||| mtiled ||| Full
 	where
-		three = ThreeColMid nmaster delta (1/3)
-		tiled = Tall nmaster delta ratio
-		nmaster = 1
-		ratio = 1/2
-		delta = 3/100
+		nmaster  = 1
+		ratio    = 1/2
+		delta    = 3/100
+		space    = spacing 12
+		rename n = renamed [Replace n]
+		three    = rename "3" $ space $ ThreeColMid nmaster delta (1/3)
+		tiled    = rename "M" $ space $ Tall nmaster delta ratio
+		mtiled   = rename "MT" $ space $ Mirror $ Tall nmaster delta ratio
+		full     = rename "F" $ Full
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
