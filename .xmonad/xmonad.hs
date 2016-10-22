@@ -28,6 +28,10 @@ layout =  smartBorders $ three ||| tiled ||| mtiled ||| Full
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
+myManageHook = composeAll
+	[ className =? "MPlayer"        --> doFloat
+	, appName   =? "gimp"           --> doFloat ]
+
 myPP = xmobarPP
 	{ ppCurrent         = xmobarColor colorBlack colorBlue
 	, ppVisible         = xmobarColor colorWhite "#404040"
@@ -42,5 +46,6 @@ main = xmonad =<< statusBar "xmobar" myPP toggleStrutsKey defaultConfig
 	, borderWidth        = 1
 	, terminal           = "st"
 	, layoutHook         = layout
+	, manageHook         = myManageHook
 	, normalBorderColor  = "#6f6f6f"
 	, focusedBorderColor = colorGreen }
