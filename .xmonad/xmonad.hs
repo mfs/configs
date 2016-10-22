@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.NoBorders
 import XMonad.Hooks.DynamicLog
 
 colorBlack   = "#1d1f21"
@@ -13,7 +14,7 @@ colorMagenta = "#b294bb"
 colorCyan    = "#8abeb7"
 colorWhite   = "#c5c8c6"
 
-layout =  three ||| tiled ||| mtiled ||| Full
+layout =  smartBorders $ three ||| tiled ||| mtiled ||| Full
 	where
 		nmaster  = 1
 		ratio    = 1/2
