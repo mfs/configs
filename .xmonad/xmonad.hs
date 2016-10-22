@@ -21,7 +21,7 @@ layout =  three ||| tiled ||| mtiled ||| Full
 		space    = spacing 12
 		rename n = renamed [Replace n]
 		three    = rename "3" $ space $ ThreeColMid nmaster delta (1/3)
-		tiled    = rename "M" $ space $ Tall nmaster delta ratio
+		tiled    = rename "T" $ space $ Tall nmaster delta ratio
 		mtiled   = rename "MT" $ space $ Mirror $ Tall nmaster delta ratio
 		full     = rename "F" $ Full
 
