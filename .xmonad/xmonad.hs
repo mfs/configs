@@ -1,9 +1,15 @@
+import qualified Data.Map as M
+
 import XMonad
+import qualified XMonad.StackSet as W
+import XMonad.Prompt
+import XMonad.Prompt.Workspace
 import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.DynamicLog
+import XMonad.Actions.GridSelect
 
 colorBlack   = "#1d1f21"
 colorRed     = "#cc6666"
@@ -13,6 +19,8 @@ colorBlue    = "#81a2be"
 colorMagenta = "#b294bb"
 colorCyan    = "#8abeb7"
 colorWhite   = "#c5c8c6"
+
+myWorkspaces = words "dev web gfx 4 5 6 7 8 9"
 
 layout =  smartBorders $ three ||| tiled ||| mtiled ||| Full
 	where
@@ -28,6 +36,11 @@ layout =  smartBorders $ three ||| tiled ||| mtiled ||| Full
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 
+myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
+	[ ((modm .|. shiftMask, xK_m ), workspacePrompt myXPConfig (windows . W.greedyView))
+	, ((modm, xK_g), gridselectWorkspace defaultGSConfig W.greedyView)
+	]
+
 myManageHook = composeAll
 	[ className =? "MPlayer"        --> doFloat
 	, appName   =? "gimp"           --> doFloat ]
@@ -41,8 +54,18 @@ myPP = xmobarPP
 	, ppTitle           = xmobarColor colorGreen colorBlack
 	}
 
+myXPConfig = defaultXPConfig
+	{ font = "xft:Inconsolata:size=11:antialias=true:autohint=true"
+	, bgColor = colorBlack
+	, fgColor = colorWhite
+	, position = Top
+	, promptBorderWidth = 0
+	}
+
 main = xmonad =<< statusBar "xmobar" myPP toggleStrutsKey defaultConfig
 	{ modMask            = mod4Mask
+	, workspaces         = myWorkspaces
+	, keys               = myKeys <+> keys defaultConfig
 	, borderWidth        = 1
 	, terminal           = "st"
 	, layoutHook         = layout
