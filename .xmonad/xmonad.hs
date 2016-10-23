@@ -49,7 +49,6 @@ myPP = xmobarPP
 	{ ppCurrent         = xmobarColor colorBlack colorBlue
 	, ppVisible         = xmobarColor colorWhite "#404040"
 	, ppHidden          = xmobarColor colorWhite colorBlack
-	, ppHiddenNoWindows = xmobarColor colorWhite colorBlack
 	, ppSep             = xmobarColor colorBlue colorBlack " | "
 	, ppTitle           = xmobarColor colorGreen colorBlack
 	}
