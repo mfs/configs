@@ -10,7 +10,7 @@ Config
 		, Run MultiCpu [ "--template", "CPU: <total>%", "--ppad", "3" ] 10
 		, Run StdinReader
 		]
-	, template = " %StdinReader% }{ %ipv6% | %ipv4% | %multicpu% | %date% "
+	, template = " %StdinReader% }{ %ipv6% <fc=#81a2be>|</fc> %ipv4% <fc=#81a2be>|</fc> %multicpu% <fc=#81a2be>|</fc> %date% "
 	}
 
 -- ipv6 => ip -6 addr | grep global | awk '{print $2}'
