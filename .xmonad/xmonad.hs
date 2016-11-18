@@ -10,6 +10,7 @@ import XMonad.Layout.ThreeColumns
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.DynamicLog
 import XMonad.Actions.GridSelect
+import XMonad.Util.Scratchpad
 
 colorBlack   = "#1d1f21"
 colorRed     = "#cc6666"
@@ -29,7 +30,7 @@ layout =  smartBorders $ three ||| tiled ||| mtiled ||| Full
 		delta    = 3/100
 		space    = spacing 12
 		rename n = renamed [Replace n]
-		three    = rename "3" $ space $ ThreeColMid nmaster delta (1/3)
+		three    = rename "|M|" $ space $ ThreeColMid nmaster delta (1/3)
 		tiled    = rename "T" $ space $ Tall nmaster delta ratio
 		mtiled   = rename "MT" $ space $ Mirror $ Tall nmaster delta ratio
 		full     = rename "F" $ Full
@@ -39,6 +40,7 @@ toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 	[ ((modm .|. shiftMask, xK_m ), workspacePrompt myXPConfig (windows . W.greedyView))
 	, ((modm, xK_g), gridselectWorkspace defaultGSConfig W.greedyView)
+	, ((modm, xK_x), scratchpadSpawnActionCustom "st -n scratchpad")
 	]
 
 myManageHook = composeAll
@@ -69,6 +71,6 @@ main = xmonad =<< statusBar "xmobar" myPP toggleStrutsKey defaultConfig
 	, borderWidth        = 1
 	, terminal           = "st"
 	, layoutHook         = layout
-	, manageHook         = myManageHook
+	, manageHook         = myManageHook <+> scratchpadManageHook (W.RationalRect 0.25 0.25 0.5 0.5)
 	, normalBorderColor  = "#6f6f6f"
 	, focusedBorderColor = colorGreen }
