@@ -9,12 +9,15 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-sleuth'
 Plugin 'tpope/vim-fugitive'
-Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Valloric/YouCompleteMe'
 Plugin 'rust-lang/rust.vim'
 Plugin 'bling/vim-airline'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'racer-rust/vim-racer'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'elzr/vim-json'
 
 call vundle#end()
 filetype plugin indent on
@@ -31,12 +34,16 @@ set hlsearch
 set mouse=r " enable middle mouse button paste
 set hidden
 
+set list
+set listchars=tab:\|\ 
+
 " runtime syntax/colortest.vim
 " :so $VIMRUNTIME/syntax/hitest.vim
 highlight CursorLine cterm=none ctermbg=233
 highlight LineNr ctermfg=7 ctermbg=233
 highlight Pmenu ctermfg=0 ctermbg=7
 highlight PmenuSel ctermfg=0 ctermbg=2
+highlight SpecialKey ctermfg=241
 
 highlight clear SignColumn
 
