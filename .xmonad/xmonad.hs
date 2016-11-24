@@ -46,6 +46,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 myManageHook = composeAll
 	[ className =? "MPlayer"        --> doFloat
 	, className =? "Chromium"       --> doShift "2:web"
+	, className =? "Firefox"        --> doShift "2:web"
 	, appName   =? "gimp"           --> doFloat ]
 
 myPP = xmobarPP
