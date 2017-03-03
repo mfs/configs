@@ -37,6 +37,8 @@ set hidden
 set list
 set listchars=tab:\|\ 
 
+let g:jsx_ext_required = 0
+
 " runtime syntax/colortest.vim
 " :so $VIMRUNTIME/syntax/hitest.vim
 highlight CursorLine cterm=none ctermbg=233
@@ -69,3 +71,6 @@ match TrailingSpaces /\s\+$/
 
 " vims yaml syntax highlighting performance is crap
 autocmd FileType yaml set syntax=off
+
+autocmd FileType javascript setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
+autocmd FileType python setl shiftwidth=4 tabstop=4 softtabstop=4 expandtab
