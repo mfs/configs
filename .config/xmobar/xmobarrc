@@ -4,7 +4,7 @@ Config
 	, bgColor = "#1d1f21"
 	, fgColor = "#c5c8c6"
 	, commands =
-		[ Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+		[ Run Date "%a %b %_d 12,0%y %H:%M:%S" "date" 10
 		, Run Com "ipv6" [] "" 10
 		, Run Com "ipv4" [] "" 10
 		, Run MultiCpu [ "--template", "CPU: <total>%", "--ppad", "3" ] 10
