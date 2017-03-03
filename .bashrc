@@ -31,6 +31,8 @@ alias key='openssl rsa -noout -text -in'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias screensaver-disable="xset -dpms; xset s off"
+alias screensaver-enable="xset +dpms; xset s on"
 
 # ssh-agent - http://rabexc.org/posts/pitfalls-of-ssh-agents
 ssh-add -l &>/dev/null
