@@ -9,6 +9,7 @@ import XMonad.Layout.Renamed
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Actions.GridSelect
 import XMonad.Util.Scratchpad
 
@@ -71,6 +72,9 @@ main = xmonad =<< statusBar "xmobar" myPP toggleStrutsKey defaultConfig
 	, keys               = myKeys <+> keys defaultConfig
 	, borderWidth        = 1
 	, terminal           = "st"
+	, logHook            = ewmhDesktopsLogHook
+	, startupHook        = ewmhDesktopsStartup
+	, handleEventHook    = ewmhDesktopsEventHook
 	, layoutHook         = layout
 	, manageHook         = myManageHook <+> scratchpadManageHook (W.RationalRect 0.25 0.25 0.5 0.5)
 	, normalBorderColor  = "#6f6f6f"
