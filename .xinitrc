@@ -28,6 +28,8 @@ done
 # Disable trackpad while typing
 [[ -x /usr/bin/syndaemon ]] && /usr/bin/syndaemon -i 1 -d
 
+. /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+
 # Start window manager
 xmonad & pid=$!
 
