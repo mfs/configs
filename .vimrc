@@ -18,10 +18,15 @@ Plugin 'racer-rust/vim-racer'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'elzr/vim-json'
+Plugin 'tikhomirov/vim-glsl'
+Plugin 'LeonB/vim-nginx'
+Plugin 'saltstack/salt-vim'
 
 call vundle#end()
 filetype plugin indent on
 " ======== Vundle End ========
+
+let g:airline_powerline_fonts = 1
 
 set laststatus=2
 
@@ -46,6 +51,8 @@ highlight LineNr ctermfg=7 ctermbg=233
 highlight Pmenu ctermfg=0 ctermbg=7
 highlight PmenuSel ctermfg=0 ctermbg=2
 highlight SpecialKey ctermfg=241
+highlight MatchParen ctermbg=238 ctermfg=45
+highlight Search ctermbg=238 ctermfg=45
 
 highlight clear SignColumn
 
@@ -70,7 +77,7 @@ highlight TrailingSpaces ctermbg=darkred ctermfg=white
 match TrailingSpaces /\s\+$/
 
 " vims yaml syntax highlighting performance is crap
-autocmd FileType yaml set syntax=off
+"autocmd FileType yaml set syntax=off
 
 autocmd FileType javascript setl shiftwidth=4 tabstop=4 softtabstop=4 noexpandtab
 autocmd FileType python setl shiftwidth=4 tabstop=4 softtabstop=4 expandtab
