@@ -1,30 +1,25 @@
-" ========= Vundle Start ========
-set nocompatible
-filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+packadd minpac
+call minpac#init()
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-fugitive'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'rust-lang/rust.vim'
-Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'racer-rust/vim-racer'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'elzr/vim-json'
-Plugin 'tikhomirov/vim-glsl'
-Plugin 'LeonB/vim-nginx'
-Plugin 'saltstack/salt-vim'
+call minpac#add('k-takata/minpac', {'type':'opt'})
 
-call vundle#end()
-filetype plugin indent on
-" ======== Vundle End ========
+call minpac#add('bling/vim-airline')
+call minpac#add('airblade/vim-gitgutter')
+call minpac#add('kien/ctrlp.vim')
+
+call minpac#add('tpope/vim-sleuth')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('rust-lang/rust.vim')
+call minpac#add('Raimondi/delimitMate')
+
+call minpac#add('racer-rust/vim-racer')
+call minpac#add('pangloss/vim-javascript')
+call minpac#add('mxw/vim-jsx')
+call minpac#add('elzr/vim-json')
+call minpac#add('tikhomirov/vim-glsl')
+call minpac#add('LeonB/vim-nginx')
+call minpac#add('saltstack/salt-vim')
 
 let g:airline_powerline_fonts = 1
 
