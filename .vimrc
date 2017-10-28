@@ -7,6 +7,7 @@ call minpac#add('k-takata/minpac', {'type':'opt'})
 call minpac#add('bling/vim-airline')
 call minpac#add('airblade/vim-gitgutter')
 call minpac#add('kien/ctrlp.vim')
+call minpac#add('w0rp/ale')
 
 call minpac#add('tpope/vim-sleuth')
 call minpac#add('tpope/vim-fugitive')
@@ -63,8 +64,6 @@ map <F9>  <Esc>:hardcopy<CR>
 map <F10> <Esc>:nohlsearch<CR>
 map <F11> <Esc>:setlocal paste!<CR>
 map <F12> <Esc>:setlocal spell! spelllang=en_au<CR>
-
-cabbrev help tab help
 
 command Run :tabnew | setlocal buftype=nofile | r ! #:p
 
