@@ -62,7 +62,7 @@ myPP = xmobarPP
 	}
 
 myXPConfig = defaultXPConfig
-	{ font = "xft:Hack:size=12:antialias=true:autohint=true"
+	{ font = "M4_XFT_FONT"
 	, bgColor = colorBlack
 	, fgColor = colorWhite
 	, position = Top

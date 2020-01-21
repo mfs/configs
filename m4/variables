@@ -1,0 +1,5 @@
+m4_divert(-1)
+
+m4_define(M4_XFT_FONT, xft:Hack:size=12:antialias=true:autohint=true)
+
+m4_divert(0)m4_dnl

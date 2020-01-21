@@ -1,0 +1,48 @@
+#!/usr/bin/bash
+
+set -e
+
+declare -A configs
+
+configs[tmux.conf]=~/.tmux.conf
+configs[screenrc]=~/.screenrc
+
+configs[xinitrc]=~/.xinitrc
+configs[xmonad.hs]=~/.xmonad/xmonad.hs
+configs[xmobarrc]=~/.config/xmobar/xmobarrc
+
+function usage {
+    echo "usage: dotz {status|update}"
+    echo
+    echo "    status: display managed files and diff between repo and live versions"
+    echo "    update: install dot files"
+}
+
+function status {
+    for key in "${!configs[@]}"; do
+	echo -e "\e[34m${key} -> ${configs[$key]}\e[0m"
+
+	cat m4/variables ${key} | m4 -P | diff --color ${configs[$key]} - || true
+    done
+}
+
+function update {
+    for key in "${!configs[@]}"; do
+	echo -e "\e[34m${key} -> ${configs[$key]}\e[0m"
+
+	mkdir -p "$(dirname ${configs[$key]} )"
+	cat m4/variables ${key} | m4 -P > ${configs[$key]}
+    done
+}
+
+case $1 in
+    status)
+	status
+	;;
+    update)
+	update
+	;;
+    *)
+	usage
+	;;
+esac
