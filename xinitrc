@@ -1,43 +1,14 @@
-# Load X resources
-xrdb -merge ~/.Xdefaults
-
-# Load X keyy mappings
-[[ -f ~/.xmodmaprc ]] && xmodmap ~/.xmodmaprc
-
+# Keyboard settings
 xset r rate 300 25
 numlockx on
 
 # Replace ugly default cursor
 xsetroot -cursor_name left_ptr
 
-# Execute script to configure monitors
-[[ -x ~/bin/xrandr-setup ]] && ~/bin/xrandr-setup
-
 # Set wallpaper
-nitrogen --restore
+~/.fehbg
 
-# Start conky instances
-for conkyrc in ~/.conkyrc0 ~/.conkyrc1
-do
-    [[ -f $conkyrc ]] && conky -c $conkyrc
-done
-
-# Compositing
-#xcompmgr &
-
-# Disable trackpad while typing
-[[ -x /usr/bin/syndaemon ]] && /usr/bin/syndaemon -i 1 -d
-
-. /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+#. /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
 # Start window manager
-xmonad & pid=$!
-
-# Load ssh keys
-#SSH_ASKPASS='/usr/lib/ssh/x11-ssh-askpass' ssh-add < /dev/null
-
-# Wait for wm to exit
-wait $pid
-
-# Kill agent
-#ssh-agent -k
+exec xmonad
