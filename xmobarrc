@@ -1,5 +1,5 @@
 Config
-	{ font = "xft:Inconsolata:size=11:antialias=true:autohint=true"
+	{ font = "xft:Hack:size=12:antialias=true:autohint=true"
 	, overrideRedirect = False
 	, bgColor = "#1d1f21"
 	, fgColor = "#c5c8c6"
