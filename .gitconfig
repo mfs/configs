@@ -7,5 +7,6 @@
 [core]
 	editor = vim
 	pager = less -FRSX
+	excludesfile = ~/.gitignore
 [push]
     default = simple

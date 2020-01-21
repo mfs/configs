@@ -21,6 +21,8 @@ call minpac#add('elzr/vim-json')
 call minpac#add('tikhomirov/vim-glsl')
 call minpac#add('LeonB/vim-nginx')
 call minpac#add('saltstack/salt-vim')
+"call minpac#add('zxqfl/tabnine-vim')
+
 
 let g:airline_powerline_fonts = 1
 
