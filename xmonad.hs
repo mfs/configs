@@ -12,6 +12,8 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Actions.GridSelect
 import XMonad.Util.Scratchpad
+import XMonad.Util.Run
+import XMonad.Hooks.DynamicProperty
 
 colorBlack   = "#1d1f21"
 colorRed     = "#cc6666"
@@ -29,7 +31,7 @@ layout =  smartBorders $ three ||| tiled ||| mtiled ||| Full
 		nmaster  = 1
 		ratio    = 1/2
 		delta    = 3/100
-		space    = spacing 12
+		space    = spacing 16
 		rename n = renamed [Replace n]
 		three    = rename "|M|" $ space $ ThreeColMid nmaster delta (1/3)
 		tiled    = rename "T" $ space $ Tall nmaster delta ratio
@@ -41,11 +43,12 @@ toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 	[ ((modm .|. shiftMask, xK_m ), workspacePrompt myXPConfig (windows . W.greedyView))
 	, ((modm, xK_g), gridselectWorkspace defaultGSConfig W.greedyView)
+	, ((modm, xK_f), safeSpawn "firefox" [])
 	, ((modm, xK_x), scratchpadSpawnActionCustom "st -n scratchpad")
 	]
 
 myManageHook = composeAll
-	[ className =? "MPlayer"        --> doFloat
+	[ className =? "mpvxxx"        --> doFloat
 	, className =? "Chromium"       --> doShift "2:web"
 	, className =? "Firefox"        --> doShift "2:web"
 	, appName   =? "gimp"           --> doFloat ]
@@ -59,7 +62,7 @@ myPP = xmobarPP
 	}
 
 myXPConfig = defaultXPConfig
-	{ font = "xft:Inconsolata:size=11:antialias=true:autohint=true"
+	{ font = "xft:Hack:size=12:antialias=true:autohint=true"
 	, bgColor = colorBlack
 	, fgColor = colorWhite
 	, position = Top
@@ -70,8 +73,8 @@ main = xmonad =<< statusBar "xmobar" myPP toggleStrutsKey defaultConfig
 	{ modMask            = mod4Mask
 	, workspaces         = myWorkspaces
 	, keys               = myKeys <+> keys defaultConfig
-	, borderWidth        = 1
-	, terminal           = "st"
+	, borderWidth        = 2
+	, terminal           = "alacritty"
 	, logHook            = ewmhDesktopsLogHook
 	, startupHook        = ewmhDesktopsStartup
 	, handleEventHook    = ewmhDesktopsEventHook
