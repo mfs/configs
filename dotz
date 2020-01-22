@@ -5,7 +5,7 @@ set -e
 declare -A configs
 
 configs[gitconfig]=~/.gitconfig
-
+configs[vimrc]=~/.vimrc
 configs[tmux.conf]=~/.tmux.conf
 configs[screenrc]=~/.screenrc
 
