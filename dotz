@@ -11,6 +11,7 @@ configs[gitconfig]=~/.gitconfig
 configs[vimrc]=~/.vimrc
 configs[tmux.conf]=~/.tmux.conf
 configs[screenrc]=~/.screenrc
+configs[alacritty.yml]=~/.config/alacritty/alacritty.yml
 
 configs[xinitrc]=~/.xinitrc
 configs[xmonad.hs]=~/.xmonad/xmonad.hs
