@@ -19,3 +19,11 @@ alias ll='ls -lh --color=auto'
 alias cr='cargo run'
 alias soundbar='pacmd set-card-profile 0 output:hdmi-stereo-extra1'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias snap='grim -g "$(slurp)"'
+alias lr='ls | sort -R | head -n 15'
+
+eval "$(starship init bash)"
+
+
+
+source /home/mfs/.config/broot/launcher/bash/br

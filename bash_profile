@@ -7,3 +7,5 @@ if [[ -f ~/.bashrc ]] ; then
 fi
 
 export PATH="$HOME/.cargo/bin:/usr/local/musl/bin:$HOME/bin:$PATH"
+
+source /home/mfs/.config/broot/launcher/bash/br
