@@ -1,6 +1,8 @@
-## Configs
+## Dotfiles
 
-My Linux configs.
+My Linux dotfiles.
+
+__Note:__ _Currently rewriting this and switching to a macro based system. Will document this soon._
 
 Previously I was storing my configs in `~/configs` and using symlinks to link
 them into place. This worked though the whole symlink thing was a bit of a
