@@ -16,6 +16,8 @@ configs[xinitrc]=~/.xinitrc
 configs[xmonad.hs]=~/.xmonad/xmonad.hs
 configs[xmobarrc]=~/.config/xmobar/xmobarrc
 
+M4="m4 -P -DM4_HOST=$(hostname -s)"
+
 function usage {
     echo "usage: dotz {status|update}"
     echo
@@ -27,7 +29,7 @@ function status {
     for key in "${!configs[@]}"; do
 	echo -e "\e[34m${key} -> ${configs[$key]}\e[0m"
 
-	cat m4/variables files/${key} | m4 -P | diff --color ${configs[$key]} - || true
+	cat m4/variables files/${key} | $M4  | diff --color ${configs[$key]} - || true
     done
 }
 
@@ -36,7 +38,7 @@ function update {
 	echo -e "\e[34m${key} -> ${configs[$key]}\e[0m"
 
 	mkdir -p "$(dirname ${configs[$key]} )"
-	cat m4/variables files/${key} | m4 -P > ${configs[$key]}
+	cat m4/variables files/${key} | $M4 > ${configs[$key]}
     done
 }
 

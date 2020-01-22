@@ -2,6 +2,10 @@
 xset r rate 300 25
 numlockx on
 
+m4_ifelse(M4_HOST, iridium,
+# Set mouse colors
+mouse-colors)
+
 # Replace ugly default cursor
 xsetroot -cursor_name left_ptr
 
