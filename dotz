@@ -4,6 +4,9 @@ set -e
 
 declare -A configs
 
+configs[bashrc]=~/.bashrc
+configs[bash_profile]=~/.bash_profile
+
 configs[gitconfig]=~/.gitconfig
 configs[vimrc]=~/.vimrc
 configs[tmux.conf]=~/.tmux.conf
