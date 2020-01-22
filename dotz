@@ -4,6 +4,8 @@ set -e
 
 declare -A configs
 
+configs[gitconfig]=~/.gitconfig
+
 configs[tmux.conf]=~/.tmux.conf
 configs[screenrc]=~/.screenrc
 
