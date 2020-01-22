@@ -27,7 +27,7 @@ function status {
     for key in "${!configs[@]}"; do
 	echo -e "\e[34m${key} -> ${configs[$key]}\e[0m"
 
-	cat m4/variables ${key} | m4 -P | diff --color ${configs[$key]} - || true
+	cat m4/variables files/${key} | m4 -P | diff --color ${configs[$key]} - || true
     done
 }
 
@@ -36,7 +36,7 @@ function update {
 	echo -e "\e[34m${key} -> ${configs[$key]}\e[0m"
 
 	mkdir -p "$(dirname ${configs[$key]} )"
-	cat m4/variables ${key} | m4 -P > ${configs[$key]}
+	cat m4/variables files/${key} | m4 -P > ${configs[$key]}
     done
 }
 
