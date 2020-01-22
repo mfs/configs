@@ -12,6 +12,13 @@ call minpac#add('w0rp/ale')
 call minpac#add('tpope/vim-sleuth')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('rust-lang/rust.vim')
+
+call minpac#add('prabirshrestha/async.vim')
+call minpac#add('prabirshrestha/vim-lsp')
+call minpac#add('prabirshrestha/asyncomplete.vim')
+call minpac#add('prabirshrestha/asyncomplete-lsp.vim')
+
+
 call minpac#add('Raimondi/delimitMate')
 
 call minpac#add('racer-rust/vim-racer')
@@ -23,14 +30,25 @@ call minpac#add('LeonB/vim-nginx')
 call minpac#add('saltstack/salt-vim')
 "call minpac#add('zxqfl/tabnine-vim')
 
-
 let g:airline_powerline_fonts = 1
 
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+
+command! PackUpdate call minpac#update()
+command! PackClean call minpac#clean()
+
+set background=dark
 set laststatus=2
 
 syntax on
 set number
-set textwidth=80
+"set textwidth=80
 set cindent
 set cursorline
 set hlsearch
@@ -44,8 +62,9 @@ let g:jsx_ext_required = 0
 
 " runtime syntax/colortest.vim
 " :so $VIMRUNTIME/syntax/hitest.vim
-highlight CursorLine cterm=none ctermbg=233
-highlight LineNr ctermfg=7 ctermbg=233
+highlight CursorLineNr cterm=None
+highlight CursorLine cterm=None ctermbg=233
+highlight LineNr cterm=None ctermfg=7 ctermbg=233
 highlight Pmenu ctermfg=0 ctermbg=7
 highlight PmenuSel ctermfg=0 ctermbg=2
 highlight SpecialKey ctermfg=241
@@ -53,6 +72,8 @@ highlight MatchParen ctermbg=238 ctermfg=45
 highlight Search ctermbg=238 ctermfg=45
 
 highlight clear SignColumn
+
+inoremap jk <Esc>
 
 map <S-Left> :bp<CR>
 map <S-Right> :bn<CR>
