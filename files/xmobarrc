@@ -1,5 +1,5 @@
 Config
-	{ font = "xft:Hack:size=12:antialias=true:autohint=true"
+	{ font = "M4_XFT_FONT"
 	, overrideRedirect = False
 	, bgColor = "#1d1f21"
 	, fgColor = "#c5c8c6"
