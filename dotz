@@ -27,19 +27,43 @@ function usage {
 }
 
 function status {
-    for key in "${!configs[@]}"; do
-	echo -e "\e[34m${key} -> ${configs[$key]}\e[0m"
+    for src in "${!configs[@]}"; do
+	local dst=${configs[$src]}
 
-	cat m4/variables files/${key} | $M4  | diff --color ${configs[$key]} - || true
+	if [[ -f "${dst}" ]]; then
+	    echo -e "\e[34m${src} -> ${dst}\e[0m"
+	    cat m4/variables files/${src} | $M4  | diff --color ${dst} - || true
+	else
+	    echo -e "\e[34m${src} -> \e[31m[MISSING]\e[0m"
+	fi
     done
 }
 
-function update {
-    for key in "${!configs[@]}"; do
-	echo -e "\e[34m${key} -> ${configs[$key]}\e[0m"
 
-	mkdir -p "$(dirname ${configs[$key]} )"
-	cat m4/variables files/${key} | $M4 > ${configs[$key]}
+# $1 - src
+# $2 - dst
+function write {
+	echo -e "\e[34m$1 -> $2\e[0m"
+
+	mkdir -p "$(dirname "$1" )"
+	cat m4/variables "files/$1" | $M4 > "$2"
+}
+
+function update {
+    for src in "${!configs[@]}"; do
+	local dst=${configs[$src]}
+
+	if [[ -f "${dst}" ]]; then
+	    local new_hash cur_hash
+	    new_hash=$(cat m4/variables files/${src} | $M4 | sha256sum)
+	    cur_hash=$(sha256sum ${dst})
+
+	    if [[ "${new_hash:0:64}" != "${cur_hash:0:64}" ]]; then
+		write "${src}" "${dst}"
+	    fi
+	else
+	    write "${src}" "${dst}"
+	fi
     done
 }
 
