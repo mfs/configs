@@ -1,0 +1,12 @@
+configs[bashrc]=~/.bashrc
+configs[bash_profile]=~/.bash_profile
+
+configs[gitconfig]=~/.gitconfig
+configs[vimrc]=~/.vimrc
+configs[tmux.conf]=~/.tmux.conf
+configs[screenrc]=~/.screenrc
+configs[alacritty.yml]=~/.config/alacritty/alacritty.yml
+
+configs[xinitrc]=~/.xinitrc
+configs[xmonad.hs]=~/.xmonad/xmonad.hs
+configs[xmobarrc]=~/.config/xmobar/xmobarrc
