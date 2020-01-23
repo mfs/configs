@@ -19,62 +19,66 @@ configs[xmobarrc]=~/.config/xmobar/xmobarrc
 
 M4="m4 -P -DM4_HOST=$(hostname -s)"
 
+
 function usage {
-    echo "usage: dotz {status|update}"
-    echo
-    echo "    status: display managed files and diff between repo and live versions"
-    echo "    update: install dot files"
+  echo "usage: dotz {status|update}"
+  echo
+  echo "    status: display managed files and diff between repo and live versions"
+  echo "    update: install dot files"
 }
 
-function status {
-    for src in "${!configs[@]}"; do
-	local dst=${configs[$src]}
 
-	if [[ -f "${dst}" ]]; then
-	    echo -e "\e[34m${src} -> ${dst}\e[0m"
-	    cat m4/variables files/${src} | $M4  | diff --color ${dst} - || true
-	else
-	    echo -e "\e[34m${src} -> \e[31m[MISSING]\e[0m"
-	fi
-    done
+function status {
+  for src in "${!configs[@]}"; do
+    local dst=${configs[$src]}
+
+    if [[ -f "${dst}" ]]; then
+      echo -e "\e[34m${src} -> ${dst}\e[0m"
+      cat m4/variables files/${src} | $M4  | diff --color ${dst} - || true
+    else
+      echo -e "\e[34m${src} -> \e[31m[MISSING]\e[0m"
+    fi
+  done
 }
 
 
 # $1 - src
 # $2 - dst
 function write {
-	echo -e "\e[34m$1 -> $2\e[0m"
+  echo -e "\e[34m$1 -> $2\e[0m"
 
-	mkdir -p "$(dirname "$1" )"
-	cat m4/variables "files/$1" | $M4 > "$2"
+  mkdir -p "$(dirname "$1" )"
+  cat m4/variables "files/$1" | $M4 > "$2"
 }
+
 
 function update {
-    for src in "${!configs[@]}"; do
-	local dst=${configs[$src]}
+  for src in "${!configs[@]}"; do
+    local dst=${configs[$src]}
 
-	if [[ -f "${dst}" ]]; then
-	    local new_hash cur_hash
-	    new_hash=$(cat m4/variables files/${src} | $M4 | sha256sum)
-	    cur_hash=$(sha256sum ${dst})
+    if [[ -f "${dst}" ]]; then
+      local new_hash cur_hash
+      new_hash=$(cat m4/variables files/${src} | $M4 | sha256sum)
+      cur_hash=$(sha256sum ${dst})
 
-	    if [[ "${new_hash:0:64}" != "${cur_hash:0:64}" ]]; then
-		write "${src}" "${dst}"
-	    fi
-	else
-	    write "${src}" "${dst}"
-	fi
-    done
+      if [[ "${new_hash:0:64}" != "${cur_hash:0:64}" ]]; then
+        write "${src}" "${dst}"
+      fi
+    else
+      write "${src}" "${dst}"
+    fi
+  done
 }
 
+
 case $1 in
-    status)
-	status
-	;;
-    update)
-	update
-	;;
-    *)
-	usage
-	;;
+  status)
+    status
+    ;;
+  update)
+    update
+    ;;
+  *)
+    usage
+    ;;
 esac
