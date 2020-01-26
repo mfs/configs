@@ -2,31 +2,26 @@
 
 My Linux dotfiles.
 
-__Note:__ _Currently rewriting this and switching to a macro based system. Will document this soon._
+Management is by the included `./dotz` shell script. Subcommands are `./dotz
+status` and `./dotz update`.
 
-Previously I was storing my configs in `~/configs` and using symlinks to link
-them into place. This worked though the whole symlink thing was a bit of a
-nuisance. It was an extra step that was required. Recently I came across a
-[better way][1] using a bare git repo. Configs are stored in `~/.cfg` as a bare
-git repo and are checked out directly into the home directory. This relies on a
-couple of things.
+Dotfiles are stored in `files/` and the destination is configured in `dotzrc`.
+Internally `dotz` stores the list of managed files in an associate array. The
+key is the file name in `files/`, the value is the location to copy the config
+file to.
 
-First clone your configs as a bare repo:
+M4 is used for macros to allow per host configs and common settings to
+abstracted out of the configs to a common location. Macros are defined in
+`m4/variables`. The short hostname is passed as `M4_HOST`.
 
-`git clone --bare <git-repo-url> $HOME/.cfg`
+Generating a config is effectively a one liner:
 
-Then define an alias:
+`cat m4/variables files/{src} | m4 -P -DM4_HOST=$(hostname -s) > {dst}`
 
-`config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'`
+where `{src}` is the source file in `files/` and `{dst}` is the location to write the config.
 
-This tells git to use `~/.cfg` as the repo and `~` as the working directory.
-Next tell git to ignore untracked files using the above alias:
+To generate a diff between the generated config and what is currently live:
 
-`config config --local status.showUntrackedFiles no`
+`cat m4/variables files/{src} | m4 -P -DM4_HOST=$(hostname -s) | diff {dst} -`
 
-You can then interact with the git repo using `config` and standard git commands
-such as `config ls-files`, `config diff`, `config commit`, etc.
-
-See the link above for a full description of how this works.
-
-[1]: https://developer.atlassian.com/blog/2016/02/best-way-to-store-dotfiles-git-bare-repo/
+The `dotz` utility wraps all this in the above mentioned subcommands.
