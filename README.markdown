@@ -1,6 +1,6 @@
 ## Dotfiles
 
-My Linux dotfiles.
+###My Linux dotfiles.
 
 Management is by the included `./dotz` shell script. Subcommands are `./dotz
 status` and `./dotz update`.
@@ -13,6 +13,8 @@ file to.
 M4 is used for macros to allow per host configs and common settings to
 abstracted out of the configs to a common location. Macros are defined in
 `m4/variables`. The short hostname is passed as `M4_HOST`.
+
+### Under The Hood
 
 Generating a config is effectively a one liner:
 
