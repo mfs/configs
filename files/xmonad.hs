@@ -44,7 +44,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
 	[ ((modm .|. shiftMask, xK_m ), workspacePrompt myXPConfig (windows . W.greedyView))
 	, ((modm, xK_g), gridselectWorkspace defaultGSConfig W.greedyView)
 	, ((modm, xK_f), safeSpawn "firefox" [])
-	, ((modm, xK_x), scratchpadSpawnActionCustom "st -n scratchpad")
+	, ((modm, xK_x), scratchpadSpawnActionCustom "alacritty --class scratchpad")
 	]
 
 myManageHook = composeAll
