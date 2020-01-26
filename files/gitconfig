@@ -6,7 +6,7 @@
 	ui = auto
 [core]
 	editor = vim
-	pager = less -FRSX
+	pager = delta --dark
 	excludesfile = ~/.gitignore
 [push]
     default = simple
