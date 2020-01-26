@@ -1,6 +1,6 @@
 ## Dotfiles
 
-###My Linux dotfiles.
+### My Linux dotfiles.
 
 Management is by the included `./dotz` shell script. Subcommands are `./dotz
 status` and `./dotz update`.
