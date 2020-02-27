@@ -24,7 +24,7 @@ colorMagenta = "#b294bb"
 colorCyan    = "#8abeb7"
 colorWhite   = "#c5c8c6"
 
-myWorkspaces = words "1:dev 2:web 3:gfx 4 5 6 7 8 9"
+myWorkspaces = words "1 2 3 4 5 6 7 8"
 
 layout =  smartBorders $ three ||| tiled ||| mtiled ||| Full
 	where
