@@ -21,6 +21,10 @@ alias soundbar='pacmd set-card-profile 0 output:hdmi-stereo-extra1'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias snap='grim -g "$(slurp)"'
 alias lr='ls | sort -R | head -n 15'
+alias rnb='toilet --rainbow -f future'
+alias mtl='toilet --metal -f future'
+alias rnt='toilet --rainbow -f term'
+
 
 eval "$(starship init bash)"
 
