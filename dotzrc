@@ -8,5 +8,6 @@ configs[screenrc]=~/.screenrc
 configs[alacritty.yml]=~/.config/alacritty/alacritty.yml
 
 configs[xinitrc]=~/.xinitrc
+configs[Xresources]=~/.Xresources
 configs[xmonad.hs]=~/.xmonad/xmonad.hs
 configs[xmobarrc]=~/.config/xmobar/xmobarrc

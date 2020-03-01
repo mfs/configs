@@ -6,6 +6,8 @@ m4_ifelse(M4_HOST, iridium,
 # Set mouse colors
 mouse-colors)
 
+xrdb ~/.Xresources
+
 # Replace ugly default cursor
 xsetroot -cursor_name left_ptr
 
