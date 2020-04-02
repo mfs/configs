@@ -8,6 +8,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Grid
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Actions.GridSelect
@@ -26,7 +27,7 @@ colorWhite   = "#c5c8c6"
 
 myWorkspaces = words "1 2 3 4 5 6 7 8"
 
-layout =  smartBorders $ three ||| tiled ||| mtiled ||| Full
+layout =  smartBorders $ three ||| tiled ||| mtiled ||| grid |||  Full
 	where
 		nmaster  = 1
 		ratio    = 1/2
@@ -36,6 +37,7 @@ layout =  smartBorders $ three ||| tiled ||| mtiled ||| Full
 		three    = rename "|M|" $ space $ ThreeColMid nmaster delta (1/3)
 		tiled    = rename "T" $ space $ Tall nmaster delta ratio
 		mtiled   = rename "MT" $ space $ Mirror $ Tall nmaster delta ratio
+		grid     = rename "G" $ space $ Grid
 		full     = rename "F" $ Full
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
