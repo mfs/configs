@@ -26,6 +26,7 @@ alias rnb='toilet --rainbow -f future'
 alias mtl='toilet --metal -f future'
 alias rnt='toilet --rainbow -f term'
 
+eval "$(dircolors)"
 
 eval "$(starship init bash)"
 
