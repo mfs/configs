@@ -10,3 +10,5 @@
 	excludesfile = ~/.gitignore
 [push]
     default = simple
+[pull]
+	ff = only
