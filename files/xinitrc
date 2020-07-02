@@ -2,7 +2,7 @@
 xset r rate 300 25
 numlockx on
 
-m4_ifelse(M4_HOST, iridium,
+m4_ifelse(M4_HOST, helium,
 # Set mouse colors
 mouse-colors)
 
