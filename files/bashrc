@@ -26,7 +26,7 @@ alias rnb='toilet --rainbow -f future'
 alias mtl='toilet --metal -f future'
 alias rnt='toilet --rainbow -f term'
 
-eval "$(dircolors)"
+export LS_COLORS="$(vivid generate molokai)"
 
 eval "$(starship init bash)"
 
