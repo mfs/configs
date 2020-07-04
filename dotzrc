@@ -1,6 +1,9 @@
 configs[bashrc]=~/.bashrc
 configs[bash_profile]=~/.bash_profile
 
+configs[filetypes.yml]=~/.config/vivid/filetypes.yml
+configs[molokai.yml]=~/.config/vivid/themes/molokai.yml
+
 configs[gitconfig]=~/.gitconfig
 configs[vimrc]=~/.vimrc
 configs[tmux.conf]=~/.tmux.conf
