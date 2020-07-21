@@ -107,7 +107,6 @@ office:
 
 archives:
   foreground: pink
-  font-style: underline
 
 executable:
   foreground: pink
