@@ -57,7 +57,6 @@ myPP = xmobarPP
     , ppTitle     = xmobarColor colorGreen colorBlack
     }
 
-m4_changequote(!,!)m4_dnl
 myConfig = desktopConfig
     { terminal    = "alacritty -e tmux"
     , modMask     = mod4Mask
@@ -68,7 +67,6 @@ myConfig = desktopConfig
     }
     `additionalKeysP`
     myKeys
-m4_changequote()m4_dnl
 
 toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask .|. shiftMask, xK_b)
 
