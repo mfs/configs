@@ -1,20 +1,14 @@
-import qualified Data.Map as M
-
 import XMonad
-import qualified XMonad.StackSet as W
-import XMonad.Prompt
-import XMonad.Prompt.Workspace
+import XMonad.Config.Desktop
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.Spacing
 import XMonad.Layout.Renamed
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Grid
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Actions.GridSelect
-import XMonad.Util.Scratchpad
+import XMonad.Util.EZConfig
 import XMonad.Util.Run
-import XMonad.Hooks.DynamicProperty
 
 colorBlack   = "#1d1f21"
 colorRed     = "#cc6666"
@@ -25,62 +19,55 @@ colorMagenta = "#b294bb"
 colorCyan    = "#8abeb7"
 colorWhite   = "#c5c8c6"
 
-myWorkspaces = words "1 2 3 4 5 6 7 8"
+myLayout = smartBorders $ three ||| tiled ||| mtiled ||| grid |||  Full
+    where
+        nmaster  = 1
+        ratio    = 1/2
+        delta    = 3/100
+        space    =  spacingRaw False (Border 16 0 16 0) True (Border 0 16 0 16) True
+        rename n = renamed [Replace n]
+        three    = rename "|M|" $ space $ ThreeColMid nmaster delta (4/10)
+        tiled    = rename "T" $ space $ Tall nmaster delta ratio
+        mtiled   = rename "MT" $ space $ Mirror $ Tall nmaster delta ratio
+        grid     = rename "G" $ space $ Grid
+        full     = rename "F" $ Full
 
-layout =  smartBorders $ three ||| tiled ||| mtiled ||| grid |||  Full
-	where
-		nmaster  = 1
-		ratio    = 1/2
-		delta    = 3/100
-		space    = spacing 16
-		rename n = renamed [Replace n]
-		three    = rename "|M|" $ space $ ThreeColMid nmaster delta (1/3)
-		tiled    = rename "T" $ space $ Tall nmaster delta ratio
-		mtiled   = rename "MT" $ space $ Mirror $ Tall nmaster delta ratio
-		grid     = rename "G" $ space $ Grid
-		full     = rename "F" $ Full
-
-toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
-	[ ((modm .|. shiftMask, xK_m ), workspacePrompt myXPConfig (windows . W.greedyView))
-	, ((modm, xK_g), gridselectWorkspace defaultGSConfig W.greedyView)
-	, ((modm, xK_f), safeSpawn "firefox" [])
-	, ((modm, xK_x), scratchpadSpawnActionCustom "alacritty --class scratchpad")
-	]
-
+-- appName   = 1st element in WM_CLASS(STRING)
+-- className = 2nd element in WM_CLASS(STRING)
+-- title     = WM_NAME(STRING)
 myManageHook = composeAll
-	[ className =? "mpvxxx"        --> doFloat
-	, className =? "Chromium"       --> doShift "2:web"
-	, className =? "Firefox"        --> doShift "2:web"
-	, appName   =? "gimp"           --> doFloat ]
+    [ className =? "mpv"                --> doFloat
+    , appName   =? "Blender"            --> doFloat
+    , title     =? "Picture-in-Picture" --> doFloat
+    , appName   =? "gimp"               --> doFloat
+    ]
+
+myKeys =
+    [ ("M-f", safeSpawnProg "firefox")
+    , ("M-b", safeSpawnProg "blender")
+    , ("M-g", safeSpawnProg "gimp")
+    , ("M-z", safeSpawn "i3lock" ["-c", "000000"])
+    ]
 
 myPP = xmobarPP
-	{ ppCurrent         = xmobarColor colorBlack colorBlue
-	, ppVisible         = xmobarColor colorWhite "#404040"
-	, ppHidden          = xmobarColor colorWhite colorBlack
-	, ppSep             = xmobarColor colorBlue colorBlack " | "
-	, ppTitle           = xmobarColor colorGreen colorBlack
-	}
+    { ppCurrent   = xmobarColor colorBlack colorBlue
+    , ppVisible   = xmobarColor colorWhite "#404040"
+    , ppHidden    = xmobarColor colorWhite colorBlack
+    , ppSep       = xmobarColor colorBlue colorBlack " | "
+    , ppTitle     = xmobarColor colorGreen colorBlack
+    }
 
-myXPConfig = defaultXPConfig
-	{ font = "M4_XFT_FONT"
-	, bgColor = colorBlack
-	, fgColor = colorWhite
-	, position = Top
-	, promptBorderWidth = 0
-	}
+myConfig = desktopConfig
+    { terminal    = "alacritty -e tmux"
+    , modMask     = mod4Mask
+    , layoutHook  = myLayout
+    , manageHook  = myManageHook
+    , normalBorderColor = "#6f6f6f"
+    , focusedBorderColor = colorGreen
+    }
+    `additionalKeysP`
+    myKeys
 
-main = xmonad =<< statusBar "xmobar" myPP toggleStrutsKey defaultConfig
-	{ modMask            = mod4Mask
-	, workspaces         = myWorkspaces
-	, keys               = myKeys <+> keys defaultConfig
-	, borderWidth        = 2
-	, terminal           = "alacritty"
-	, logHook            = ewmhDesktopsLogHook
-	, startupHook        = ewmhDesktopsStartup
-	, handleEventHook    = ewmhDesktopsEventHook
-	, layoutHook         = layout
-	, manageHook         = myManageHook <+> scratchpadManageHook (W.RationalRect 0.25 0.25 0.5 0.5)
-	, normalBorderColor  = "#6f6f6f"
-	, focusedBorderColor = colorGreen }
+toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask .|. shiftMask, xK_b)
+
+main = xmonad =<< statusBar "xmobar" myPP toggleStrutsKey myConfig
